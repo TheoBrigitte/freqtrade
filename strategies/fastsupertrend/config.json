@@ -1,0 +1,7 @@
+{
+    "timeframe": "1h",
+    "stoploss": -0.2,
+    "minimal_roi": {
+      "0": 0.02
+    }
+}

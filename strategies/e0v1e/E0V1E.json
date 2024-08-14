@@ -1,0 +1,35 @@
+{
+  "strategy_name": "E0V1E",
+  "params": {
+    "roi": {
+      "0": 10
+    },
+    "stoploss": {
+      "stoploss": -1.0
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    },
+    "buy": {
+      "buy_cti_32": -0.55,
+      "buy_ema_high": 1.043,
+      "buy_ema_low": 0.956,
+      "buy_ewo": -5.836,
+      "buy_rsi": 35,
+      "buy_rsi_32": 29,
+      "buy_rsi_fast": 42,
+      "buy_rsi_fast_32": 40,
+      "buy_sma15_32": 0.975
+    },
+    "sell": {
+      "sell_deadfish_bb_factor": 0.928,
+      "sell_deadfish_bb_width": 0.359,
+      "sell_deadfish_profit": -0.05,
+      "sell_deadfish_volume_factor": 2.45,
+      "sell_fastx": 64
+    },
+    "protection": {}
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2023-05-08 21:08:42.643550+00:00"
+}

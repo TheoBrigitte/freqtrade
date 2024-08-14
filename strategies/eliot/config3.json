@@ -1,0 +1,43 @@
+{
+    "max_open_trades": 3,
+    "stake_amount": "unlimited",
+    "timeframe": "5m",
+    //"trailing_stop": true,
+    //"trailing_stop_positive": 0.001,
+    //"trailing_stop_positive_offset": 0.02,
+    //"trailing_only_offset_is_reached": true,
+    "minimal_roi": {
+      "0": 0.04,
+      //"130": 0
+    },
+    "unfilledtimeout": {
+        "unit": "minutes",
+        "entry": 10,
+        "exit": 30
+    },
+    "order_types": {
+        "entry": "limit",
+        "exit": "limit",
+        "emergency_exit": "market",
+        "force_entry": "market",
+        "force_exit": "market",
+        "stoploss": "market",
+        "stoploss_on_exchange": false,
+        "stoploss_on_exchange_interval": 60
+    },
+    "entry_pricing": {
+        "price_side": "ask",
+        "ask_last_balance": 0,
+        "use_order_book": false,
+        "order_book_top": 1,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "price_side": "bid",
+        "use_order_book": true,
+        "order_book_top": 1
+    }
+}

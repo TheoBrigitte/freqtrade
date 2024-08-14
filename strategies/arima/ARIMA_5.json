@@ -1,0 +1,50 @@
+{
+  "strategy_name": "ARIMA_5",
+  "params": {
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 10
+    },
+    "buy": {
+      "atr_length": 26,
+      "base_nb_candles_buy": 175,
+      "dn": 0.986,
+      "increment": 1.0007,
+      "up": 1.022,
+      "window": 20,
+      "window_1h": 25,
+      "window_4h": 15,
+      "x": 1.55,
+      "x_1h": 1.6,
+      "x_4h": 1.44
+    },
+    "sell": {
+      "moon": 82,
+      "ts0": 0.007,
+      "ts1": 0.016,
+      "ts2": 0.021,
+      "ts3": 0.035,
+      "tsl_target0": 0.038,
+      "tsl_target1": 0.08,
+      "tsl_target2": 0.089,
+      "tsl_target3": 0.13
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.135,
+      "23": 0.062,
+      "79": 0.023,
+      "170": 0
+    },
+    "stoploss": {
+      "stoploss": -0.102
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-06-01 11:24:26.849546+00:00"
+}

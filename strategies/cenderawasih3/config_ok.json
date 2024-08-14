@@ -1,0 +1,19 @@
+{
+    "max_open_trades": 5,
+    "stake_currency": "USDT",
+    "stake_amount": 300,
+    "tradable_balance_ratio": 0.9,
+    "dry_run_wallet": 1300,
+    "fiat_display_currency": "USD",
+    "timeframe": "5m",
+    "dataformat_ohlcv": "hdf5",
+    "protections": [
+        {
+            "method": "MaxDrawdown",
+            "lookback_period_candles": 400,
+            "trade_limit": 1,
+            "stop_duration_candles": 220,
+            "max_allowed_drawdown": 0.2
+        }
+    ]
+}

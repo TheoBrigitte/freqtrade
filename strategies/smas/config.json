@@ -1,0 +1,6 @@
+{
+    "timeframe": "5m",
+    "minimal_roi": {
+      "0": 0.02
+    }
+}

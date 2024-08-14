@@ -1,0 +1,125 @@
+{
+    "max_open_trades": 1,
+    "stake_currency": "USDT",
+    "stake_amount": "unlimited",
+    "available_capital": 2400,
+    "tradable_balance_ratio": 1,
+    "dry_run_wallet": 1000,
+    "fiat_display_currency": "USD",
+    "stoploss_on_exchange": false,
+    "dry_run": false,
+    "cancel_open_orders_on_exit": false,
+    "dataformat_ohlcv": "hdf5",
+    "unfilledtimeout": {
+        "entry": 10,
+        "exit": 30,
+        "unit": "minutes"
+    },
+    "order_types": {
+        "entry": "limit",
+        "exit": "limit",
+        "emergency_exit": "market",
+        "force_exit": "market",
+        "force_entry": "market",
+        "stoploss": "market",
+        "stoploss_on_exchange": false,
+        "stoploss_on_exchange_interval": 60
+    },
+    "entry_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_last_balance": 0.0,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1
+    },
+    "exchange": {
+        "name": "kucoin",
+        "key": "",
+        "secret": "",
+        "password": "",
+        "log_responses": false,
+        "ccxt_config": {
+            "enableRateLimit": false,
+            "timeout": 60000,
+            "urls": {
+            "api": {
+                "public": "http://exchange-proxy:9000/kucoin",
+                "private": "http://exchange-proxy:9000/kucoin"
+        }
+        }
+        },
+        "ccxt_async_config": {
+            "enableRateLimit": false,
+            "timeout": 60000
+        },
+        "pair_whitelist": [
+            "CAKE/USDT"
+        ],
+        "pair_blacklist": [
+            "TFUEL\/BTC",
+            "ONE\/BTC",
+            "ATOM\/BTC",
+            "XMR\/BTC",
+            "BNB\/BUSD",
+            "BNB\/BTC",
+            "BNB\/ETH",
+            "BNB\/EUR",
+            "BNB\/NGN",
+            "BNB\/PAX",
+            "BNB\/RUB",
+            "BNB\/TRY",
+            "BNB\/TUSD",
+            "BNB\/USDC",
+            "BNB\/USDS",
+            "BNB\/USDT",
+            "EUR\/USDT",
+            ".*UP\/USDT",
+            ".*DOWN\/USDT",
+            ".*BEAR\/USDT",
+            ".*BULL\/USDT",
+            "DOGE\/USDT",
+            "BRD\/BTC",
+            "KCS/.*",           
+            "(BNB)/.*",
+            "API3/USDT",
+            ".*(_PREMIUM|BEAR|BULL|HALF|HEDGE|UP|DOWN|[1235][SL])/.*",
+            "(AUD|BRZ|CAD|CHF|EUR|GBP|HKD|IDRT|JPY|NGN|RUB|SGD|TRY|UAH|USD|ZAR)/.*",
+            "(BUSD|CUSD|CUSDT|DAI|PAXG|SUSD|TUSD|USDC|USDN|USDP|USDT|VAI|UST|USTC|AUSD)/.*",
+            "(ACM|AFA|ALA|ALL|ALPINE|APL|ASR|ATM|BAR|CAI|CHZ|CITY|FOR|GAL|GOZ|IBFK|JUV|LEG|LOCK-1|NAVI|NMR|NOV|PFL|PSG|ROUSH|STV|TH|TRA|UCH|UFC|YBO)/.*",
+            "(1EARTH|ILA|BOBA|CTXC|CWAR|HBAR|NMR|OMG|ONG|ARDR|DMTR|MLS|TORN|LUNA|BTS|QKC|COS|ACA|FTT|SRM|YFII|SNM|BNX|ANC|AION|MIR|BNX|STG|HNT|WABI|QLC|NEBL|AUTO|VGX|PEPE|VITE|DREP|JASMY|PNT|PERL|AMB|OAX|LOOM|BTS|RAD)/.*"
+        ]
+    },
+    "pairlists": [
+        {
+            "method": "RemotePairList",
+            "number_assets": 60,
+            "pairlist_url" : "https://remotepairlist.com?q=44058fd155ece795"
+    }
+    ],
+    "api_server": {
+        "enabled": true,
+        "listen_ip_address": "0.0.0.0",
+        "listen_port": 8116,
+        "verbosity": "error",
+        "enable_openapi": false,
+        "jwt_secret_key": "85ea5f6fe18df3f2c9facb1ae82a6aa86f5eb39d0bea367c78c9d32a4d191c32",
+        "ws_token": "FZ646GN6dZ3ToE37-Sqeo63eqnsCGkpe9g",
+        "CORS_origins": ["http://127.0.0.1:8080"],
+        "username": "freqtrader",
+        "password": "testing"
+    },
+    "bot_name": "ft-Hippo",
+    "initial_state": "running",
+    "force_entry_enable": false,
+    "internals": {
+        "process_throttle_secs": 5
+    }
+}

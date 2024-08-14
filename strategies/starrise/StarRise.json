@@ -1,0 +1,34 @@
+{
+  "strategy_name": "StarRise",
+  "params": {
+    "roi": {
+      "0": 0.223,
+      "13": 0.063,
+      "54": 0.038,
+      "89": 0
+    },
+    "stoploss": {
+      "stoploss": -0.247
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 1
+    },
+    "buy": {},
+    "sell": {
+      "pHSL": -0.268,
+      "pPF_1": 0.016,
+      "pPF_2": 0.045,
+      "pSL_1": 0.017,
+      "pSL_2": 0.043
+    },
+    "protection": {}
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-06-26 18:35:42.695615+00:00"
+}

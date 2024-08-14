@@ -1,0 +1,17 @@
+{
+    "max_open_trades": 3,
+    "stake_amount": "unlimited",
+    "timeframe": "5m",
+    //"stoploss": -0.1,
+    //"minimal_roi": {
+    //  "0": 0.02
+    //}
+   "order_types": {
+       "entry": "market",
+       "exit": "market",
+       "emergency_exit": "market",
+       "force_entry": "market",
+       "force_exit": "market",
+       "stoploss": "market"
+   }
+}

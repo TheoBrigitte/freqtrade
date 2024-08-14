@@ -1,0 +1,58 @@
+{
+  "strategy_name": "twinturboV8",
+  "params": {
+    "stoploss": {
+      "stoploss": -0.252
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.116,
+      "trailing_stop_positive_offset": 0.182,
+      "trailing_only_offset_is_reached": true
+    },
+    "buy": {
+      "base_nb_candles_buy": 9,
+      "bull": -0.25,
+      "dca1": 0.03,
+      "dca2": 0.08,
+      "dca3": 0.12,
+      "ewo_high": 2,
+      "ewo_high_safe": 12,
+      "ewo_high_uL": 21,
+      "ewo_low": -9,
+      "low_offset": 0.99,
+      "rsi_buy": 70
+    },
+    "sell": {
+      "base_nb_candles_sell": 24,
+      "estop": -0.38,
+      "high_offset": 1.05,
+      "high_offset_2": 0.99,
+      "ts0": 0.015,
+      "ts1": 0.011,
+      "ts2": 0.019,
+      "ts3": 0.04,
+      "ts4": 0.046,
+      "ts5": 0.057,
+      "tsl_target0": 0.047,
+      "tsl_target1": 0.049,
+      "tsl_target2": 0.07,
+      "tsl_target3": 0.13,
+      "tsl_target4": 0.229,
+      "tsl_target5": 0.3
+    },
+    "protection": {
+      "cooldown_lookback": 29,
+      "stop_duration": 134,
+      "use_stop_protection": false
+    },
+    "roi": {
+      "0": 0.084,
+      "146": 0.051000000000000004,
+      "259": 0.034,
+      "339": 0
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2023-06-13 01:29:35.586005+00:00"
+}

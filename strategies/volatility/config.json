@@ -1,0 +1,9 @@
+{
+    "max_open_trades": -1,
+    "stake_amount": 100,
+    "timeframe": "1h",
+    //"stoploss": -0.1,
+    //"minimal_roi": {
+    //  "0": 0.02
+    //}
+}

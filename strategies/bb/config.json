@@ -1,0 +1,14 @@
+
+{
+    "max_open_trades": 5,
+    "timeframe": "5m",
+    "stake_currency": "USDT",
+    "stake_amount": "unlimited",
+    "fiat_display_currency": "USD",
+    "cancel_open_orders_on_exit": false,
+    "unfilledtimeout": {
+        "entry": 10,
+        "exit": 30,
+        "unit": "minutes"
+    }
+}

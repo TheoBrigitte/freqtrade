@@ -1,0 +1,12 @@
+{
+    "max_open_trades": 3,
+    //"stake_currency": "USDT",
+    "stake_amount": 500,
+    "timeframe": "5m",
+    //"trailing_stop": false,
+    //"trailing_only_offset_is_reached": false,
+    //"stoploss": -0.1
+    //"minimal_roi": {
+    //  "0": 0.03
+    //}
+}

@@ -1,0 +1,48 @@
+{
+    "max_open_trades": 4,
+    "stake_currency": "USDT",
+    "stake_amount" : "unlimited",
+    "available_capital": 70,
+    "dry_run": true,
+    "dry_run_wallet": 70,
+    "pairlists": [
+        {
+            "method": "VolumePairList",
+            "number_assets": 50,
+            "sort_key": "quoteVolume"
+        },
+        {"method": "AgeFilter", "min_days_listed": 30}
+    ],
+    "trading_mode": "spot",
+    "ignore_buying_expired_candle_after": 120,
+    "unfilledtimeout": {
+        "entry": 2,
+        "exit": 1,
+        "unit": "minutes"
+    },
+    "order_types": {
+        "entry": "limit",
+        "exit": "market",
+        "emergency_exit": "market",
+        "force_exit": "market",
+        "force_entry": "market",
+        "stoploss": "market",
+        "stoploss_on_exchange": false,
+        "stoploss_on_exchange_interval": 60
+    },
+    "entry_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_last_balance": 0.0,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1
+    }
+}

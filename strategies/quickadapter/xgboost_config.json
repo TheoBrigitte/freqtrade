@@ -1,0 +1,51 @@
+{
+    "timeframe": "3m",
+    "freqai": {
+        "enabled": true,
+        "conv_width": 1,
+        "purge_old_models": 5,
+        "expiration_hours": 10,
+        "train_period_days": 14,
+        "backtest_period_days": 2,
+        "write_metrics_to_disk": true,
+        "identifier": "quickadapter-xgboost",
+        "fit_live_predictions_candles": 600,
+        "data_kitchen_thread_count": 10,
+        "track_performance": true,
+        "extra_returns_per_train": {"DI_value_param1":0, "DI_value_param2":0, "DI_value_param3":0, "DI_cutoff": 2, "&s-minima_sort_threshold":-2, "&s-maxima_sort_threshold":2},
+        "feature_parameters": {
+            "include_corr_pairlist": [
+                "BTC/USDT",
+                "ETH/USDT"
+            ],
+            "include_timeframes": [
+                "5m",
+                "15m",
+                "1h",
+                "4h"
+            ],
+            "label_period_candles": 100,
+            "include_shifted_candles": 3,
+            "DI_threshold": 10,
+            "weight_factor": 0.9,
+            "principal_component_analysis": false,
+            "use_SVM_to_remove_outliers": false,
+            "use_DBSCAN_to_remove_outliers": false,
+            "indicator_periods_candles": [8, 16, 32],
+            "inlier_metric_window": 0,
+            "noise_standard_deviation": 0.02,
+            "reverse_test_train_order": false,
+            "plot_feature_importances": 0,
+            "buffer_train_data_candles": 100
+        },
+        "data_split_parameters": {
+            "test_size": 0,
+            "random_state": 1,
+            "shuffle": false
+        },
+        "model_training_parameters": {
+            "n_jobs": 10,
+            "verbosity": 1
+        }
+    }
+}

@@ -1,0 +1,632 @@
+freqtrade $ ./scripts/backtest_spot1y.sh user_data/strategies/e0v1e_stash
+==> start
+==> strategy directory: user_data/strategies/e0v1e_stash
+==> strategy list (1) : E0V1E
+==> backtest start
++ /home/theo/projects/freqtrade/scripts/../.env/bin/freqtrade backtesting -c ./user_data/config_spot.json -c ./user_data/config_fix10100.json -c ./user_data/binance-usdt-static_spot.json --cache=none --enable-protections --timeframe-detail 1m --timerange 20220601-20230601 --strategy-path user_data/strategies/e0v1e_stash --strategy-list E0V1E -c user_data/strategies/e0v1e_stash/config.json
+2023-10-08 20:37:03,805 - freqtrade - INFO - freqtrade 2023.6
+2023-10-08 20:37:03,808 - freqtrade.configuration.load_config - INFO - Using config: ./user_data/config_spot.json ...
+2023-10-08 20:37:03,808 - freqtrade.configuration.load_config - INFO - Using config: ./user_data/config_fix10100.json ...
+2023-10-08 20:37:03,808 - freqtrade.configuration.load_config - INFO - Using config: ./user_data/binance-usdt-static_spot.json ...
+2023-10-08 20:37:03,808 - freqtrade.configuration.load_config - INFO - Using config: user_data/strategies/e0v1e_stash/config.json ...
+2023-10-08 20:37:03,809 - freqtrade.loggers - INFO - Verbosity set to 0
+2023-10-08 20:37:03,809 - freqtrade.configuration.configuration - INFO - Using additional Strategy lookup path: user_data/strategies/e0v1e_stash
+2023-10-08 20:37:03,809 - freqtrade.configuration.configuration - INFO - Parameter --enable-protections detected, enabling Protections. ...
+2023-10-08 20:37:03,809 - freqtrade.configuration.configuration - INFO - Using max_open_trades: 4 ...
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Parameter --timeframe-detail detected, using 1m for intra-candle backtesting ...
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Parameter --timerange detected: 20220601-20230601 ...
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Using user-data directory: /home/theo/projects/freqtrade/user_data ...
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Using data directory: /home/theo/projects/freqtrade/user_data/data/binance ...
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Using strategy list of 1 strategies
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Parameter --cache=none detected ...
+2023-10-08 20:37:03,810 - freqtrade.configuration.configuration - INFO - Filter trades by timerange: 20220601-20230601
+2023-10-08 20:37:03,810 - freqtrade.exchange.check_exchange - INFO - Checking exchange...
+2023-10-08 20:37:03,818 - freqtrade.exchange.check_exchange - INFO - Exchange "binance" is officially supported by the Freqtrade development team.
+2023-10-08 20:37:03,818 - freqtrade.configuration.configuration - INFO - Using pairlist from configuration.
+2023-10-08 20:37:03,818 - freqtrade.configuration.config_validation - INFO - Validating configuration ...
+2023-10-08 20:37:03,821 - freqtrade.commands.optimize_commands - INFO - Starting freqtrade in Backtesting mode
+2023-10-08 20:37:03,821 - freqtrade.exchange.exchange - INFO - Instance is running with dry_run enabled
+2023-10-08 20:37:03,821 - freqtrade.exchange.exchange - INFO - Using CCXT 3.1.44
+2023-10-08 20:37:03,832 - freqtrade.exchange.exchange - INFO - Using Exchange "Binance"
+2023-10-08 20:37:10,117 - freqtrade.resolvers.exchange_resolver - INFO - Using resolved exchange 'Binance'...
+2023-10-08 20:37:10,185 - freqtrade.resolvers.iresolver - INFO - Using resolved strategy E0V1E from '/home/theo/projects/freqtrade/user_data/strategies/e0v1e_stash/E0V1E.py'...
+2023-10-08 20:37:10,185 - freqtrade.strategy.hyper - INFO - Found no parameter file.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'timeframe' with value in config file: 5m.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'trailing_stop' with value in config file: False.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'trailing_only_offset_is_reached' with value in config file: False.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'order_types' with value in config file: {'entry': 'limit', 'exit': 'market', 'emergency_exit': 'market', 'force_entry': 'market', 'force_exit': 'market', 'stoploss': 'market', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_currency' with value in config file: USDT.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'stake_amount' with value in config file: unlimited.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'unfilledtimeout' with value in config file: {'entry': 2, 'exit': 1, 'exit_timeout_count': 0, 'unit': 'minutes'}.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'use_exit_signal' with value in config file: True.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'ignore_buying_expired_candle_after' with value in config file: 120.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Override strategy 'max_open_trades' with value in config file: 4.
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using minimal_roi: {'0': 10}
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using timeframe: 5m
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stoploss: -0.18
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop: False
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_stop_positive_offset: 0.0
+2023-10-08 20:37:10,185 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using trailing_only_offset_is_reached: False
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_custom_stoploss: False
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using process_only_new_candles: True
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_types: {'entry': 'limit', 'exit': 'market', 'emergency_exit': 'market', 'force_entry': 'market', 'force_exit': 'market', 'stoploss': 'market', 'stoploss_on_exchange': False, 'stoploss_on_exchange_interval': 60}
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using order_time_in_force: {'entry': 'GTC', 'exit': 'GTC'}
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_currency: USDT
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using stake_amount: unlimited
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using protections: []
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using startup_candle_count: 120
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using unfilledtimeout: {'entry': 2, 'exit': 1, 'exit_timeout_count': 0, 'unit': 'minutes'}
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using use_exit_signal: True
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_only: False
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_roi_if_entry_signal: False
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using exit_profit_offset: 0.0
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using disable_dataframe_checks: False
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using ignore_buying_expired_candle_after: 120
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using position_adjustment_enable: False
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_entry_position_adjustment: -1
+2023-10-08 20:37:10,186 - freqtrade.resolvers.strategy_resolver - INFO - Strategy using max_open_trades: 4
+2023-10-08 20:37:10,186 - freqtrade.configuration.config_validation - INFO - Validating configuration ...
+2023-10-08 20:37:10,190 - freqtrade.resolvers.iresolver - INFO - Using resolved pairlist StaticPairList from '/home/theo/projects/freqtrade/freqtrade/plugins/pairlist/StaticPairList.py'...
+2023-10-08 20:37:10,407 - freqtrade.data.history.history_utils - INFO - Using indicator startup period: 120 ...
+2023-10-08 20:37:10,542 - freqtrade.data.history.idatahandler - WARNING - AAVE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:10,716 - freqtrade.data.history.idatahandler - WARNING - ADA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:10,894 - freqtrade.data.history.idatahandler - WARNING - ALGO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:11,089 - freqtrade.data.history.idatahandler - WARNING - ALICE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:11,289 - freqtrade.data.history.idatahandler - WARNING - ALPHA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:11,459 - freqtrade.data.history.idatahandler - WARNING - ANKR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:11,626 - freqtrade.data.history.idatahandler - WARNING - AR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:11,820 - freqtrade.data.history.idatahandler - WARNING - ATM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:12,011 - freqtrade.data.history.idatahandler - WARNING - ATOM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:12,180 - freqtrade.data.history.idatahandler - WARNING - AUDIO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:12,346 - freqtrade.data.history.idatahandler - WARNING - AVA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:12,511 - freqtrade.data.history.idatahandler - WARNING - AVAX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:12,677 - freqtrade.data.history.idatahandler - WARNING - AXS/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:12,845 - freqtrade.data.history.idatahandler - WARNING - BAKE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:13,048 - freqtrade.data.history.idatahandler - WARNING - BAT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:13,214 - freqtrade.data.history.idatahandler - WARNING - BCH/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:13,384 - freqtrade.data.history.idatahandler - WARNING - BTC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:13,549 - freqtrade.data.history.idatahandler - WARNING - BURGER/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:13,718 - freqtrade.data.history.idatahandler - WARNING - CAKE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:13,903 - freqtrade.data.history.idatahandler - WARNING - CELO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:14,077 - freqtrade.data.history.idatahandler - WARNING - CELR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:14,332 - freqtrade.data.history.idatahandler - WARNING - CHR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:14,493 - freqtrade.data.history.idatahandler - WARNING - CHZ/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:14,656 - freqtrade.data.history.idatahandler - WARNING - CKB/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:14,822 - freqtrade.data.history.idatahandler - WARNING - COMP/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:15,005 - freqtrade.data.history.idatahandler - WARNING - CRV/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:15,172 - freqtrade.data.history.idatahandler - WARNING - CTSI/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:15,340 - freqtrade.data.history.idatahandler - WARNING - DASH/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:15,520 - freqtrade.data.history.idatahandler - WARNING - DATA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:15,708 - freqtrade.data.history.idatahandler - WARNING - DEGO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:15,912 - freqtrade.data.history.idatahandler - WARNING - DENT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:16,132 - freqtrade.data.history.idatahandler - WARNING - DGB/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:16,301 - freqtrade.data.history.idatahandler - WARNING - DOCK/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:16,463 - freqtrade.data.history.idatahandler - WARNING - DODO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:16,623 - freqtrade.data.history.idatahandler - WARNING - DOGE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:16,783 - freqtrade.data.history.idatahandler - WARNING - DOT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:16,962 - freqtrade.data.history.idatahandler - WARNING - EGLD/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:17,124 - freqtrade.data.history.idatahandler - WARNING - ENJ/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:17,284 - freqtrade.data.history.idatahandler - WARNING - EOS/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:17,445 - freqtrade.data.history.idatahandler - WARNING - ETC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:17,631 - freqtrade.data.history.idatahandler - WARNING - ETH/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:17,796 - freqtrade.data.history.idatahandler - WARNING - FIL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:18,011 - freqtrade.data.history.idatahandler - WARNING - FTM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:18,174 - freqtrade.data.history.idatahandler - WARNING - GRT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:18,334 - freqtrade.data.history.idatahandler - WARNING - HARD/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:18,495 - freqtrade.data.history.idatahandler - WARNING - HBAR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:18,660 - freqtrade.data.history.idatahandler - WARNING - HOT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:18,827 - freqtrade.data.history.idatahandler - WARNING - IOST/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:19,021 - freqtrade.data.history.idatahandler - WARNING - IOTA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:19,214 - freqtrade.data.history.idatahandler - WARNING - IOTX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:19,367 - freqtrade.data.history.idatahandler - WARNING - KAVA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:19,529 - freqtrade.data.history.idatahandler - WARNING - KSM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:19,716 - freqtrade.data.history.idatahandler - WARNING - LINK/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:19,887 - freqtrade.data.history.idatahandler - WARNING - LPT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:20,057 - freqtrade.data.history.idatahandler - WARNING - LTC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:20,220 - freqtrade.data.history.idatahandler - WARNING - LUNA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:20,382 - freqtrade.data.history.idatahandler - WARNING - MANA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:20,543 - freqtrade.data.history.idatahandler - WARNING - MASK/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:20,704 - freqtrade.data.history.idatahandler - WARNING - MATIC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:20,889 - freqtrade.data.history.idatahandler - WARNING - MBL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:21,071 - freqtrade.data.history.idatahandler - WARNING - MKR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:21,246 - freqtrade.data.history.idatahandler - WARNING - MTL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:21,408 - freqtrade.data.history.idatahandler - WARNING - NEO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:21,572 - freqtrade.data.history.idatahandler - WARNING - NKN/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:21,728 - freqtrade.data.history.idatahandler - WARNING - NMR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:21,914 - freqtrade.data.history.idatahandler - WARNING - OM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:22,074 - freqtrade.data.history.idatahandler - WARNING - OMG/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:22,243 - freqtrade.data.history.idatahandler - WARNING - ONE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:22,395 - freqtrade.data.history.idatahandler - WARNING - ONG/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:22,558 - freqtrade.data.history.idatahandler - WARNING - ONT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:22,720 - freqtrade.data.history.idatahandler - WARNING - OXT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:22,911 - freqtrade.data.history.idatahandler - WARNING - PERL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:23,099 - freqtrade.data.history.idatahandler - WARNING - PERP/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:23,270 - freqtrade.data.history.idatahandler - WARNING - PNT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:23,433 - freqtrade.data.history.idatahandler - WARNING - POLS/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:23,598 - freqtrade.data.history.idatahandler - WARNING - POND/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:23,773 - freqtrade.data.history.idatahandler - WARNING - QTUM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:23,952 - freqtrade.data.history.idatahandler - WARNING - REEF/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:24,130 - freqtrade.data.history.idatahandler - WARNING - RLC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:24,293 - freqtrade.data.history.idatahandler - WARNING - RUNE/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:24,458 - freqtrade.data.history.idatahandler - WARNING - RVN/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:24,620 - freqtrade.data.history.idatahandler - WARNING - SAND/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:24,784 - freqtrade.data.history.idatahandler - WARNING - SC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:24,975 - freqtrade.data.history.idatahandler - WARNING - SKL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:25,140 - freqtrade.data.history.idatahandler - WARNING - SLP/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:25,334 - freqtrade.data.history.idatahandler - WARNING - SNX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:25,496 - freqtrade.data.history.idatahandler - WARNING - SOL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:25,659 - freqtrade.data.history.idatahandler - WARNING - STMX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:25,821 - freqtrade.data.history.idatahandler - WARNING - STPT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:25,993 - freqtrade.data.history.idatahandler - WARNING - STRAX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:26,153 - freqtrade.data.history.idatahandler - WARNING - STX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:26,338 - freqtrade.data.history.idatahandler - WARNING - SUPER/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:26,500 - freqtrade.data.history.idatahandler - WARNING - SUSHI/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:26,662 - freqtrade.data.history.idatahandler - WARNING - SXP/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:26,824 - freqtrade.data.history.idatahandler - WARNING - TFUEL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:27,019 - freqtrade.data.history.idatahandler - WARNING - THETA/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:27,178 - freqtrade.data.history.idatahandler - WARNING - TKO/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:27,343 - freqtrade.data.history.idatahandler - WARNING - TLM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:27,507 - freqtrade.data.history.idatahandler - WARNING - TRX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:27,668 - freqtrade.data.history.idatahandler - WARNING - TWT/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:27,830 - freqtrade.data.history.idatahandler - WARNING - UNI/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:28,020 - freqtrade.data.history.idatahandler - WARNING - VET/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:28,180 - freqtrade.data.history.idatahandler - WARNING - WAVES/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:28,369 - freqtrade.data.history.idatahandler - WARNING - WIN/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:28,528 - freqtrade.data.history.idatahandler - WARNING - WING/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:28,721 - freqtrade.data.history.idatahandler - WARNING - WRX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:28,895 - freqtrade.data.history.idatahandler - WARNING - XEM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:29,085 - freqtrade.data.history.idatahandler - WARNING - XLM/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:29,246 - freqtrade.data.history.idatahandler - WARNING - XMR/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:29,402 - freqtrade.data.history.idatahandler - WARNING - XRP/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:29,561 - freqtrade.data.history.idatahandler - WARNING - XTZ/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:29,714 - freqtrade.data.history.idatahandler - WARNING - XVS/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:29,899 - freqtrade.data.history.idatahandler - WARNING - YFI/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:30,089 - freqtrade.data.history.idatahandler - WARNING - ZEC/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:30,244 - freqtrade.data.history.idatahandler - WARNING - ZEN/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:30,405 - freqtrade.data.history.idatahandler - WARNING - ZIL/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:30,565 - freqtrade.data.history.idatahandler - WARNING - ZRX/USDT, spot, 5m, data starts at 2022-06-01 00:00:00
+2023-10-08 20:37:30,673 - freqtrade.optimize.backtesting - INFO - Loading data from 2022-06-01 00:00:00 up to 2023-06-01 00:00:00 (365 days).
+2023-10-08 20:37:30,673 - freqtrade.configuration.timerange - WARNING - Moving start-date by 120 candles to account for startup time.
+2023-10-08 20:37:43,878 - freqtrade.data.history.idatahandler - INFO - Price jump in BTC/USDT, 1m, spot between two candles of 39.81% detected.
+2023-10-08 20:37:43,941 - freqtrade.data.converter - INFO - Missing data fillup for BTC/USDT: before: 136001 - after: 525001 - 286.03%
+2023-10-08 20:37:44,559 - freqtrade.data.history.idatahandler - INFO - Price jump in BURGER/USDT, 1m, spot between two candles of 25.08% detected.
+2023-10-08 20:38:04,571 - freqtrade.data.converter - INFO - Missing data fillup for ETH/USDT: before: 461921 - after: 525001 - 13.66%
+2023-10-08 20:39:10,564 - freqtrade.optimize.backtesting - INFO - Dataload complete. Calculating indicators
+2023-10-08 20:39:10,574 - freqtrade.optimize.backtesting - INFO - Running backtesting for Strategy E0V1E
+2023-10-08 20:39:10,574 - freqtrade.strategy.hyper - INFO - No params for buy found, using default values.
+2023-10-08 20:39:10,574 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): buy_cti_32 = -0.58
+2023-10-08 20:39:10,574 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): buy_dummy = 45
+2023-10-08 20:39:10,574 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): buy_rsi_32 = 35
+2023-10-08 20:39:10,575 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): buy_rsi_fast_32 = 45
+2023-10-08 20:39:10,575 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): buy_sma15_32 = 0.961
+2023-10-08 20:39:10,575 - freqtrade.strategy.hyper - INFO - No params for sell found, using default values.
+2023-10-08 20:39:10,575 - freqtrade.strategy.hyper - INFO - Strategy Parameter(default): sell_fastx = 75
+2023-10-08 20:39:10,575 - freqtrade.strategy.hyper - INFO - No params for protection found, using default values.
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: invalid value encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:53: RuntimeWarning: divide by zero encountered in scalar divide
+  return rn / rd
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+/home/theo/projects/freqtrade/.env/lib/python3.11/site-packages/pandas_ta/overlap/linreg.py:52: RuntimeWarning: invalid value encountered in scalar power
+  rd = (divisor * (length * y2_sum - y_sum * y_sum)) ** 0.5
+2023-10-08 20:41:41,091 - freqtrade.optimize.backtesting - INFO - Backtesting with data from 2022-06-01 10:00:00 up to 2023-06-01 00:00:00 (364 days).
+2023-10-08 20:41:41,091 - freqtrade.plugins.protectionmanager - INFO - No protection Handlers defined.
+2023-10-08 20:44:12,686 - freqtrade.misc - INFO - dumping json to "/home/theo/projects/freqtrade/user_data/backtest_results/backtest-result-2023-10-08_20-44-12.meta.json"
+2023-10-08 20:44:12,687 - freqtrade.misc - INFO - dumping json to "/home/theo/projects/freqtrade/user_data/backtest_results/backtest-result-2023-10-08_20-44-12.json"
+2023-10-08 20:44:12,694 - freqtrade.misc - INFO - dumping json to "/home/theo/projects/freqtrade/user_data/backtest_results/.last_result.json"
+Result for strategy E0V1E
+============================================================== BACKTESTING REPORT =============================================================
+|        Pair |   Entries |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |     Avg Duration |   Win  Draw  Loss  Win% |
+|-------------+-----------+----------------+----------------+-------------------+----------------+------------------+-------------------------|
+|    STX/USDT |         8 |           4.24 |          33.92 |           121.035 |          12.10 |          0:30:00 |     8     0     0   100 |
+| BURGER/USDT |        21 |           2.05 |          43.07 |           112.868 |          11.29 |          1:01:00 |    20     0     1  95.2 |
+|   WING/USDT |        27 |           1.08 |          29.27 |            90.733 |           9.07 |          1:17:00 |    22     0     5  81.5 |
+|    ATM/USDT |        11 |           1.50 |          16.48 |            59.596 |           5.96 |          0:46:00 |    11     0     0   100 |
+|    CKB/USDT |         8 |           1.94 |          15.54 |            56.793 |           5.68 |          0:40:00 |     8     0     0   100 |
+|   DODO/USDT |         7 |           2.05 |          14.34 |            52.686 |           5.27 |          0:39:00 |     7     0     0   100 |
+|    NMR/USDT |        25 |           0.81 |          20.17 |            50.861 |           5.09 |          1:03:00 |    23     0     2  92.0 |
+|    TWT/USDT |         6 |           2.32 |          13.91 |            48.505 |           4.85 |          0:28:00 |     6     0     0   100 |
+|   POLS/USDT |         7 |           2.33 |          16.28 |            45.975 |           4.60 |          1:30:00 |     7     0     0   100 |
+|  STRAX/USDT |         5 |           2.81 |          14.07 |            43.427 |           4.34 |          0:38:00 |     5     0     0   100 |
+|    PNT/USDT |         8 |           1.27 |          10.15 |            37.695 |           3.77 |          0:30:00 |     8     0     0   100 |
+|   STPT/USDT |         7 |           1.55 |          10.88 |            36.038 |           3.60 |          1:26:00 |     7     0     0   100 |
+|     SC/USDT |         6 |           1.57 |           9.41 |            34.706 |           3.47 |          3:11:00 |     6     0     0   100 |
+|   DEGO/USDT |        11 |           0.79 |           8.71 |            32.752 |           3.28 |          1:37:00 |     9     0     2  81.8 |
+|    XVS/USDT |         2 |           3.46 |           6.91 |            27.650 |           2.76 |          1:10:00 |     2     0     0   100 |
+|   HARD/USDT |         4 |           1.48 |           5.90 |            23.291 |           2.33 |          4:58:00 |     4     0     0   100 |
+|   DOCK/USDT |         3 |           1.98 |           5.94 |            21.522 |           2.15 |          0:25:00 |     3     0     0   100 |
+|   PERP/USDT |         7 |           0.77 |           5.42 |            20.187 |           2.02 |          1:28:00 |     7     0     0   100 |
+|    MBL/USDT |        12 |           0.48 |           5.75 |            19.835 |           1.98 |          1:29:00 |    10     0     2  83.3 |
+|    OXT/USDT |         2 |           2.51 |           5.02 |            17.669 |           1.77 |          0:30:00 |     2     0     0   100 |
+|    RLC/USDT |         5 |           1.05 |           5.24 |            17.388 |           1.74 |          2:53:00 |     5     0     0   100 |
+|   DENT/USDT |         2 |           2.54 |           5.08 |            17.074 |           1.71 |          0:15:00 |     2     0     0   100 |
+|   COMP/USDT |         1 |           4.40 |           4.40 |            15.077 |           1.51 |          0:41:00 |     1     0     0   100 |
+|   REEF/USDT |         2 |           1.86 |           3.72 |            13.992 |           1.40 |          0:22:00 |     2     0     0   100 |
+|   CTSI/USDT |         4 |           1.15 |           4.61 |            13.810 |           1.38 |          0:39:00 |     4     0     0   100 |
+|   DOGE/USDT |         2 |           1.74 |           3.49 |            13.276 |           1.33 |          0:35:00 |     2     0     0   100 |
+|    RVN/USDT |         1 |           2.50 |           2.50 |             9.183 |           0.92 |         12:57:00 |     1     0     0   100 |
+|   CELO/USDT |         1 |           2.25 |           2.25 |             7.983 |           0.80 |          0:25:00 |     1     0     0   100 |
+|    WIN/USDT |         1 |           1.96 |           1.96 |             7.894 |           0.79 |          0:25:00 |     1     0     0   100 |
+|    DOT/USDT |         1 |           1.98 |           1.98 |             6.774 |           0.68 |          0:10:00 |     1     0     0   100 |
+|  SUPER/USDT |         4 |           0.51 |           2.02 |             6.446 |           0.64 |          2:06:00 |     3     0     1  75.0 |
+|    ENJ/USDT |         1 |           1.88 |           1.88 |             6.174 |           0.62 |          0:05:00 |     1     0     0   100 |
+|    MTL/USDT |         4 |           0.40 |           1.60 |             6.100 |           0.61 |          3:15:00 |     4     0     0   100 |
+|    SLP/USDT |         1 |           1.52 |           1.52 |             6.037 |           0.60 |          0:15:00 |     1     0     0   100 |
+|    DGB/USDT |         1 |           1.57 |           1.57 |             5.650 |           0.56 |          0:20:00 |     1     0     0   100 |
+|    XEM/USDT |         2 |           0.73 |           1.46 |             5.283 |           0.53 |          0:32:00 |     2     0     0   100 |
+|  WAVES/USDT |         3 |           0.61 |           1.82 |             4.724 |           0.47 |          1:11:00 |     3     0     0   100 |
+|    CRV/USDT |         2 |           0.64 |           1.28 |             4.643 |           0.46 |          0:18:00 |     2     0     0   100 |
+|    WRX/USDT |         4 |           0.30 |           1.20 |             4.518 |           0.45 |          1:10:00 |     4     0     0   100 |
+|    KSM/USDT |         1 |           1.19 |           1.19 |             4.063 |           0.41 |          0:25:00 |     1     0     0   100 |
+|    AVA/USDT |         8 |           0.21 |           1.65 |             3.669 |           0.37 |          1:10:00 |     6     0     2  75.0 |
+|  AUDIO/USDT |         2 |           0.41 |           0.81 |             3.121 |           0.31 |          1:42:00 |     2     0     0   100 |
+|    ONT/USDT |         1 |           0.77 |           0.77 |             3.026 |           0.30 |          0:30:00 |     1     0     0   100 |
+|    AXS/USDT |         1 |           0.73 |           0.73 |             2.441 |           0.24 |          0:05:00 |     1     0     0   100 |
+|    SNX/USDT |         1 |           0.71 |           0.71 |             1.910 |           0.19 |          0:30:00 |     1     0     0   100 |
+|    LPT/USDT |         2 |           0.09 |           0.18 |             0.658 |           0.07 |          5:33:00 |     2     0     0   100 |
+|   KAVA/USDT |         1 |           0.07 |           0.07 |             0.222 |           0.02 |          0:07:00 |     1     0     0   100 |
+|   IOST/USDT |         1 |           0.05 |           0.05 |             0.210 |           0.02 | 9 days, 18:58:00 |     1     0     0   100 |
+|   BAKE/USDT |         1 |           0.04 |           0.04 |             0.150 |           0.02 |          0:41:00 |     1     0     0   100 |
+|   CELR/USDT |         1 |           0.02 |           0.02 |             0.070 |           0.01 |          9:10:00 |     1     0     0   100 |
+|   AAVE/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ADA/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   ALGO/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|  ALICE/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   ATOM/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   AVAX/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    BAT/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    BCH/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    BTC/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   CAKE/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    CHR/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   DASH/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   EGLD/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    EOS/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ETC/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ETH/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    FTM/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    GRT/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   HBAR/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    HOT/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   IOTA/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   IOTX/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    LTC/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   MANA/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    MKR/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    NEO/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    OMG/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ONE/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ONG/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   QTUM/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   RUNE/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   SAND/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   STMX/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|  SUSHI/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    SXP/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|  THETA/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    TLM/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    TRX/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    UNI/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    VET/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    XLM/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    XMR/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    XRP/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    XTZ/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ZEC/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ZEN/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ZIL/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|    ZRX/USDT |         0 |           0.00 |           0.00 |             0.000 |           0.00 |             0:00 |     0     0     0     0 |
+|   LUNA/USDT |        14 |           0.16 |           2.22 |            -3.810 |          -0.38 |          1:18:00 |    12     0     2  85.7 |
+|   ANKR/USDT |         6 |          -0.29 |          -1.76 |            -5.857 |          -0.59 |          0:52:00 |     5     0     1  83.3 |
+|   MASK/USDT |        10 |          -0.16 |          -1.59 |            -5.858 |          -0.59 |          1:01:00 |     8     0     2  80.0 |
+|    SOL/USDT |         4 |          -0.35 |          -1.40 |            -8.473 |          -0.85 |          0:50:00 |     3     0     1  75.0 |
+|   POND/USDT |        11 |          -0.54 |          -5.92 |            -8.536 |          -0.85 |          1:15:00 |    10     0     1  90.9 |
+|    NKN/USDT |         7 |          -0.31 |          -2.15 |            -8.589 |          -0.86 |          6:35:00 |     6     0     1  85.7 |
+|    SKL/USDT |         2 |          -3.31 |          -6.62 |           -15.347 |          -1.53 |          2:00:00 |     1     0     1  50.0 |
+|   DATA/USDT |         7 |          -0.58 |          -4.04 |           -19.469 |          -1.95 |  2 days, 0:24:00 |     6     0     1  85.7 |
+|     AR/USDT |         4 |          -1.21 |          -4.84 |           -19.813 |          -1.98 |          2:56:00 |     3     0     1  75.0 |
+|  MATIC/USDT |         2 |          -2.76 |          -5.51 |           -21.340 |          -2.13 |          0:55:00 |     1     0     1  50.0 |
+|  TFUEL/USDT |         1 |          -7.21 |          -7.21 |           -25.836 |          -2.58 |          1:00:00 |     0     0     1     0 |
+|   PERL/USDT |        19 |          -0.43 |          -8.13 |           -26.893 |          -2.69 |          2:20:00 |    16     0     3  84.2 |
+|    FIL/USDT |         1 |          -9.53 |          -9.53 |           -35.364 |          -3.54 |          7:25:00 |     0     0     1     0 |
+|     OM/USDT |         5 |          -1.72 |          -8.62 |           -36.936 |          -3.69 |          3:24:00 |     4     0     1  80.0 |
+|    YFI/USDT |         1 |          -9.92 |          -9.92 |           -38.030 |          -3.80 |          3:09:00 |     0     0     1     0 |
+|  ALPHA/USDT |         2 |          -4.92 |          -9.84 |           -38.411 |          -3.84 |         22:08:00 |     1     0     1  50.0 |
+|    TKO/USDT |        11 |          -1.23 |         -13.54 |           -48.428 |          -4.84 |          5:13:00 |     9     0     2  81.8 |
+|   LINK/USDT |         1 |         -18.15 |         -18.15 |           -69.297 |          -6.93 |          1:41:00 |     0     0     1     0 |
+|    CHZ/USDT |         4 |          -5.34 |         -21.35 |           -79.273 |          -7.93 |          0:39:00 |     2     0     2  50.0 |
+|       TOTAL |       361 |           0.58 |         209.06 |           629.830 |          62.98 |          3:18:00 |   321     0    40  88.9 |
+======================================================= LEFT OPEN TRADES REPORT ========================================================
+|   Pair |   Entries |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+-----------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |         0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=========================================================== ENTER TAG STATS ===========================================================
+|   TAG |   Entries |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+-----------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| buy_1 |       361 |           0.58 |         209.06 |           629.830 |          62.98 |        3:18:00 |   321     0    40  88.9 |
+| TOTAL |       361 |           0.58 |         209.06 |           629.830 |          62.98 |        3:18:00 |   321     0    40  88.9 |
+========================================================== EXIT REASON STATS ==========================================================
+|             Exit Reason |   Exits |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|-------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|       fastk_profit_sell |     296 |    296     0     0   100 |           2.1  |         621.13 |          2107.04  |         155.28 |
+|         fastk_loss_sell |      31 |      0     0    31     0 |          -8.53 |        -264.38 |          -945.266 |         -66.1  |
+| fastk_profit_sell_delay |      25 |     25     0     0   100 |           0.62 |          15.59 |            55.227 |           3.9  |
+|               stop_loss |       9 |      0     0     9     0 |         -18.14 |        -163.28 |          -587.171 |         -40.82 |
+================== SUMMARY METRICS ==================
+| Metric                      | Value               |
+|-----------------------------+---------------------|
+| Backtesting from            | 2022-06-01 10:00:00 |
+| Backtesting to              | 2023-06-01 00:00:00 |
+| Max open trades             | 4                   |
+|                             |                     |
+| Total/Daily Avg Trades      | 361 / 0.99          |
+| Starting balance            | 1000 USDT           |
+| Final balance               | 1629.83 USDT        |
+| Absolute profit             | 629.83 USDT         |
+| Total profit %              | 62.98%              |
+| CAGR %                      | 63.20%              |
+| Sortino                     | 2.02                |
+| Sharpe                      | 1.91                |
+| Calmar                      | 15.65               |
+| Profit factor               | 1.41                |
+| Expectancy                  | 0.05                |
+| Trades per day              | 0.99                |
+| Avg. daily profit %         | 0.17%               |
+| Avg. stake amount           | 345.719 USDT        |
+| Total trade volume          | 124804.605 USDT     |
+|                             |                     |
+| Best Pair                   | BURGER/USDT 43.07%  |
+| Worst Pair                  | CHZ/USDT -21.35%    |
+| Best trade                  | WING/USDT 27.23%    |
+| Worst trade                 | WING/USDT -18.16%   |
+| Best day                    | 121.229 USDT        |
+| Worst day                   | -191.869 USDT       |
+| Days win/draw/lose          | 127 / 182 / 28      |
+| Avg. Duration Winners       | 2:14:00             |
+| Avg. Duration Loser         | 11:55:00            |
+| Rejected Entry signals      | 17                  |
+| Entry/Exit Timeouts         | 0 / 0               |
+|                             |                     |
+| Min balance                 | 985.103 USDT        |
+| Max balance                 | 1679.745 USDT       |
+| Max % of account underwater | 21.12%              |
+| Absolute Drawdown (Account) | 21.12%              |
+| Absolute Drawdown           | 354.779 USDT        |
+| Drawdown high               | 679.745 USDT        |
+| Drawdown low                | 324.966 USDT        |
+| Drawdown Start              | 2022-10-09 12:50:00 |
+| Drawdown End                | 2022-11-08 19:31:00 |
+| Market change               | -34.26%             |
+=====================================================
+
+Backtested 2022-06-01 10:00:00 -> 2023-06-01 00:00:00 | Max open trades : 4
+========================================================================= STRATEGY SUMMARY ========================================================================
+|   Strategy |   Entries |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |             Drawdown |
+|------------+-----------+----------------+----------------+-------------------+----------------+----------------+-------------------------+----------------------|
+|      E0V1E |       361 |           0.58 |         209.06 |           629.830 |          62.98 |        3:18:00 |   321     0    40  88.9 | 354.779 USDT  21.12% |
+===================================================================================================================================================================
+
+For more details, please look at the detail tables above
