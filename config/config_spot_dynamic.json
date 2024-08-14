@@ -1,0 +1,37 @@
+{
+  "dry_run": true,
+  "dry_run_wallet": 1000,
+  "max_open_trades": 6,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 0.99,
+  "fiat_display_currency": "USD",
+  "trailing_stop": false,
+  "trailing_only_offset_is_reached": false,
+  "unfilledtimeout": {
+    "entry": 5,
+    "exit": 20,
+    "exit_timeout_count": 0,
+    "unit": "minutes"
+  },
+  "entry_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "order_types": {
+      "entry": "limit",
+      "exit": "limit",
+      "emergency_exit": "limit",
+      "force_entry": "limit",
+      "force_exit": "limit",
+      "stoploss": "limit",
+      "stoploss_on_exchange": false,
+      "stoploss_on_exchange_interval": 60
+  }
+}
