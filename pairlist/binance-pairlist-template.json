@@ -1,0 +1,9 @@
+{
+    "exchange": {
+        "name": "binance",
+        "pair_whitelist": []
+    },
+    "pairlists": [
+        {"method": "StaticPairList"}
+    ]
+}
