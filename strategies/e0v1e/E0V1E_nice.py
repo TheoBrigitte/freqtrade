@@ -20,7 +20,7 @@ def ewo(dataframe, ema_length=5, ema2_length=35):
     return emadif
 
 
-class E0V1E(IStrategy):
+class E0V1E_nice(IStrategy):
     minimal_roi = {
         "0": 10
     }
