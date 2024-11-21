@@ -1,0 +1,42 @@
+{
+  "max_open_trades": 8,
+  "amend_last_stake_amount": true,
+  "tradable_balance_ratio": 0.99,
+  "fiat_display_currency": "EUR",
+  "force_entry_enable": true,
+  "initial_state": "running",
+  "unfilledtimeout": {
+        "entry": 5,
+        "exit": 5,
+        "exit_timeout_count": 0,
+        "unit": "minutes"
+        },
+    "order_types": {
+        "entry": "limit",
+        "exit": "market",
+        "roi": "market",
+        "emergency_exit": "market",
+        "force_entry": "market",
+        "force_exit": "market",
+        "stoploss": "market",
+        "stoploss_on_exchange": false,
+        "stoploss_on_exchange_interval": 60
+    },
+    "entry_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_last_balance": 0.0,
+        "check_depth_of_market": {"enabled": false, "bids_to_ask_delta": 1},
+    },
+    "exit_pricing": {
+        "price_side": "other",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_last_balance": 0.0,
+    },
+    "order_time_in_force": {
+    "entry": "GTC",
+    "exit": "GTC"
+    },
+}

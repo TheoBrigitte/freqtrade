@@ -1,0 +1,11 @@
+{
+  "strategy": "RsiquiV5",
+  "add_config_files": [
+  "configs/default_futures_2.json",
+  "configs/trading_mode-futures.json",
+  "configs/pairlist-usdt-static.json",
+  "configs/blacklist.json",
+  "strategies/RsiquiV5.json",
+  "secret.json"
+  ]
+}

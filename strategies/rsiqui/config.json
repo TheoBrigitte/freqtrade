@@ -1,0 +1,16 @@
+{
+    "timeframe": "5m",
+		"max_open_trades": 8,
+    "minimal_roi": {
+        "0": 0.0223,
+        "34": 0.0082,
+        "82": 0.0033,
+        "109": 0
+    },
+		"unfilledtimeout": {
+			"entry": 5,
+			"exit": 5,
+			"exit_timeout_count": 0,
+			"unit": "minutes"
+		}
+}
