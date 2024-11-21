@@ -1,14 +1,14 @@
 {
   "max_open_trades": 6,
-	"freqaimodel": "LightGBMRegressor",
   "stake_currency": "USDT",
   "tradable_balance_ratio": 0.9,
   "timeframe": "5m",
+  "exit_profit_only": false,
   "cancel_open_orders_on_exit": false,
   "unfilledtimeout": {
     "unit": "minutes",
-    "enter": 10,
-    "exit": 30
+    "enter": 5,
+    "exit": 20
   },
   "order_types": {
     "entry": "limit",
@@ -21,7 +21,7 @@
     "stoploss_on_exchange_interval": 60
   },
   "entry_pricing": {
-    "price_side": "same",
+    "price_side": "other",
     "ask_last_balance": 0,
     "use_order_book": true,
     "order_book_top": 1,
@@ -31,43 +31,8 @@
     }
   },
   "exit_pricing": {
-    "price_side": "same",
+    "price_side": "other",
     "use_order_book": true,
     "order_book_top": 1
-  },
-  "freqai": {
-        "enabled": true,
-        "purge_old_models": 2,
-        "train_period_days": 15,
-        "backtest_period_days": 7,
-        "live_retrain_hours": 0,
-        "identifier": "unique-id",
-        "feature_parameters": {
-            "include_timeframes": [
-                "5m",
-                "15m",
-                "1h"
-            ],
-            "include_corr_pairlist": [
-                "BTC/USDT",
-                "ETH/USDT"
-            ],
-            "label_period_candles": 20,
-            "include_shifted_candles": 2,
-            "DI_threshold": 0.9,
-            "weight_factor": 0.9,
-            "principal_component_analysis": false,
-            "use_SVM_to_remove_outliers": true,
-            "indicator_periods_candles": [
-                10,
-                20
-            ],
-            "plot_feature_importances": 0
-        },
-        "data_split_parameters": {
-            "test_size": 0.33,
-            "random_state": 1
-        },
-        "model_training_parameters": {}
-    }
+  }
 }
