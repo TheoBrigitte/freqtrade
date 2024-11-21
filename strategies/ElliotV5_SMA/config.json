@@ -1,0 +1,11 @@
+{
+    "max_open_trades": 3,
+    "stake_amount": "unlimited",
+    "timeframe": "5m",
+    "minimal_roi": {
+      "0": 0.021,
+      "40": 0.013,
+      "87": 0.008,
+      "120": 0
+    }
+}
