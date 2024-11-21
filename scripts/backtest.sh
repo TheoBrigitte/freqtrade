@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source "$SCRIPT_DIR/lib.sh"
@@ -49,6 +51,7 @@ echo "==> backtest start"
 (
   set -x
   $FREQTRADE_DIR/.venv/bin/freqtrade backtesting --cache none --enable-protections --timeframe-detail 1m "${args[@]}" --strategy-list $strategy_list $@
+  #$FREQTRADE_DIR/.venv/bin/freqtrade backtesting --cache none --disable-max-market-positions --timeframe-detail 1m "${args[@]}" --strategy-list $strategy_list $@
 )
 
 echo "===> profit plot command"
