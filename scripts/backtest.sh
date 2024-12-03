@@ -2,7 +2,7 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-source "$SCRIPT_DIR/lib.sh"
+source "$SCRIPT_DIR/common.sh"
 
 input="$1"
 shift
@@ -11,7 +11,6 @@ source_directory=""
 strategy_list=""
 if [ -d "$input" ]; then
   source_directory="$input"
-  #$SCRIPT_DIR/migrate-strategies.sh
   if [ -f "$source_directory/whitelist" ]; then
     strategy_list=$(cat "$source_directory/whitelist")
   else
@@ -34,7 +33,7 @@ args+=(--strategy-path $source_directory)
 
 if [ -f "$source_directory/config.json" ]; then
 	#echo "==> found timeframes:"
-	##grep -hEr 'timeframe =' $target_directory | awk '{print $3}' | sort -bi | uniq -c
+	#grep -hEr 'timeframe =' $target_directory | awk '{print $3}' | sort -bi | uniq -c
 	#grep -hPr '^\s+timeframe\s+=\s+.\d+[mhd].' $target_directory | awk '{print $3}' | sort -bi | uniq -c
 	#read -p "Enter timeframe: " timeframe
 	#args+=(--timeframe $timeframe)

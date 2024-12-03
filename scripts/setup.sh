@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+#
+# Setup script to install and update freqtrade
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-source "$SCRIPT_DIR/lib.sh"
+source "$SCRIPT_DIR/common.sh"
 
 usage() {
 	echo "Usage: $BIN_NAME [ -i | -u ]
