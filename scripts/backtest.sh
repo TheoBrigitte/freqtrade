@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -eu
-
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source "$SCRIPT_DIR/lib.sh"
@@ -47,6 +45,7 @@ if [ -f "$source_directory/arguments" ]; then
 	args+=($(cat "$source_directory/arguments"))
 fi
 
+set -eu
 echo "==> backtest start"
 (
   set -x
