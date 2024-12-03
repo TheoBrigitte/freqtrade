@@ -1,14 +1,15 @@
 {
   "max_open_trades": 6,
   "stake_currency": "USDT",
+  "stake_amount": 100,
   "tradable_balance_ratio": 0.9,
   "timeframe": "5m",
   "exit_profit_only": false,
   "cancel_open_orders_on_exit": false,
   "unfilledtimeout": {
     "unit": "minutes",
-    "enter": 5,
-    "exit": 20
+    "enter": 10,
+    "exit": 30
   },
   "order_types": {
     "entry": "limit",
