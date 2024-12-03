@@ -4,6 +4,13 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source "$SCRIPT_DIR/common.sh"
 
+if [ $# -lt 1 ]; then
+  echo "Usage: $(basename $0) <strategy directory or file> [freqtrade options]
+
+example: $(basename $0) strategies/strategy1 --timerange=20230301-20230601"
+  exit 1
+fi
+
 input="$1"
 shift
 

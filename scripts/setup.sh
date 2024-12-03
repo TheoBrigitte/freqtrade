@@ -7,7 +7,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source "$SCRIPT_DIR/common.sh"
 
 usage() {
-	echo "Usage: $BIN_NAME [ -i | -u ]
+  echo "Usage: $(basename $0) [ -i | -u ]
 
 Manage freqtrade instance
 
