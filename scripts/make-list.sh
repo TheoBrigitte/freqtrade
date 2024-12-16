@@ -9,4 +9,4 @@ This script make a space separated list of strategy names from a directory or fi
   exit 1
 fi
 
-grep -hEr '^class\s.+(IStrategy)' $1 | cut -d' ' -f2 | cut -d'(' -f1 | xargs echo -n
+grep  --exclude-dir dry-run -hEr '^class\s.+(IStrategy)' $1 | cut -d' ' -f2 | cut -d'(' -f1 | xargs echo -n
