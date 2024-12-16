@@ -20,7 +20,7 @@ import datetime
 from technical.util import resample_to_interval, resampled_merge
 from datetime import datetime, timedelta
 from freqtrade.persistence import Trade
-from freqtrade.strategy import stoploss_from_open, DecimalParameter, IntParameter, \
+from freqtrade.strategy import stoploss_from_open, merge_informative_pair, DecimalParameter, IntParameter, \
     CategoricalParameter
 import technical.indicators as ftt
 
@@ -57,7 +57,7 @@ def lerp(a: float, b: float, t: float) -> float:
 logger = logging.getLogger(__name__)
 
 
-class SMAOffset_Hippocritical_dca_live(IStrategy):
+class SMAOffset_Hippocritical_dca_old(IStrategy):
     # Original: SMAOffsetProtectOptV1 by kkeue, shared on the freqtrade discord at 2021-06-19
     # Added dca of Stash86, modified and optimized it.
     # Added jorikito#2815 's partial fill compensation
@@ -113,12 +113,13 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
         if tag:
             return tag
 
-        entry_tag = 'empty'
-        if hasattr(trade, 'entry_tag') and trade.entry_tag is not None:
-            entry_tag = trade.entry_tag
+        buy_tag = 'empty'
+        if hasattr(trade, 'buy_tag') and trade.buy_tag is not None:
+            buy_tag = trade.buy_tag
+        buy_tags = buy_tag.split()
 
         if current_profit <= -0.35:
-            return f'stop_loss ({entry_tag})'
+            return f'stop_loss ({buy_tag})'
 
         return None
 
@@ -126,7 +127,7 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
                            rate: float, time_in_force: str, exit_reason: str,
                            current_time: datetime, **kwargs) -> bool:
         # remove pair from custom initial stake dict only if full exit
-        if trade.amount == amount and pair in self.cust_proposed_initial_stakes:
+        if trade.amount == amount:
             del self.cust_proposed_initial_stakes[pair]
         return True
 
@@ -145,7 +146,7 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
         if current_profit > self.initial_safety_order_trigger:
             return None
 
-        filled_buys = trade.select_filled_orders(trade.entry_side)
+        filled_buys = trade.select_filled_orders('buy')
         count_of_buys = len(filled_buys)
 
         if 1 <= count_of_buys <= self.max_so_multiplier_orig:
@@ -171,24 +172,21 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
                     stake_amount = actual_initial_stake
 
                     already_bought = sum(filled_buy.cost for filled_buy in filled_buys)
-                    if trade.pair in self.cust_proposed_initial_stakes:
-                        if self.cust_proposed_initial_stakes[trade.pair] > 0:
-                            # This calculates the amount of stake that will get used for the current safety order,
-                            # including compensation for any partial buys
-                            proposed_initial_stake = self.cust_proposed_initial_stakes[trade.pair]
-                            current_actual_stake = already_bought * math.pow(self.safety_order_volume_scale,
-                                                                             (count_of_buys - 1))
-                            current_stake_preposition = proposed_initial_stake * math.pow(self.safety_order_volume_scale,
-                                                                                          (count_of_buys - 1))
-                            current_stake_preposition_compensation = current_stake_preposition + abs(
-                                current_stake_preposition - current_actual_stake)
-                            total_so_stake = lerp(current_actual_stake, current_stake_preposition_compensation,
-                                                  self.partial_fill_compensation_scale)
-                            # Set the calculated stake amount
-                            stake_amount = total_so_stake
-                        else:
-                            # Fallback stake amount calculation
-                            stake_amount = stake_amount * math.pow(self.safety_order_volume_scale, (count_of_buys - 1))
+
+                    if self.cust_proposed_initial_stakes[trade.pair] > 0:
+                        # This calculates the amount of stake that will get used for the current safety order,
+                        # including compensation for any partial buys
+                        proposed_initial_stake = self.cust_proposed_initial_stakes[trade.pair]
+                        current_actual_stake = already_bought * math.pow(self.safety_order_volume_scale,
+                                                                         (count_of_buys - 1))
+                        current_stake_preposition = proposed_initial_stake * math.pow(self.safety_order_volume_scale,
+                                                                                      (count_of_buys - 1))
+                        current_stake_preposition_compensation = current_stake_preposition + abs(
+                            current_stake_preposition - current_actual_stake)
+                        total_so_stake = lerp(current_actual_stake, current_stake_preposition_compensation,
+                                              self.partial_fill_compensation_scale)
+                        # Set the calculated stake amount
+                        stake_amount = total_so_stake
                     else:
                         # Fallback stake amount calculation
                         stake_amount = stake_amount * math.pow(self.safety_order_volume_scale, (count_of_buys - 1))
@@ -267,9 +265,10 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
 
     # Optimal timeframe for the strategy
     timeframe = '5m'
+    informative_timeframe = '1h'
 
     process_only_new_candles = True
-    startup_candle_count: int = 1000
+    startup_candle_count: int = 576
 
     plot_config = \
         {
@@ -313,6 +312,20 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
 
     use_custom_stoploss = False
 
+    def informative_pairs(self):
+
+        pairs = self.dp.current_whitelist()
+        informative_pairs = [(pair, self.informative_timeframe) for pair in pairs]
+
+        return informative_pairs
+
+    def get_informative_indicators(self, metadata: dict):
+
+        dataframe = self.dp.get_pair_dataframe(
+            pair=metadata['pair'], timeframe=self.informative_timeframe)
+
+        return dataframe
+
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
         # Calculate all ma_buy values
@@ -334,12 +347,11 @@ class SMAOffset_Hippocritical_dca_live(IStrategy):
         # RSI
         dataframe['rsi'] = ta.RSI(dataframe, timeperiod=14)
 
-        candles_bidaily_of_5m: int = 576
         # Check for 0 volume candles in the last day
         dataframe['missing_data'] = \
             (dataframe['volume'] <= 0).rolling(
-                window=candles_bidaily_of_5m,
-                min_periods=candles_bidaily_of_5m).sum()
+                window=self.startup_candle_count,
+                min_periods=self.startup_candle_count).sum()
 
         return dataframe
 

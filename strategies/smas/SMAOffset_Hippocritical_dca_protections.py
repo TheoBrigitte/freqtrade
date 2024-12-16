@@ -57,7 +57,7 @@ def lerp(a: float, b: float, t: float) -> float:
 logger = logging.getLogger(__name__)
 
 
-class SMAOffset_Hippocritical_dca(IStrategy):
+class SMAOffset_Hippocritical_dca_protections(IStrategy):
     # Original: SMAOffsetProtectOptV1 by kkeue, shared on the freqtrade discord at 2021-06-19
     # Added dca of Stash86, modified and optimized it.
     # Added jorikito#2815 's partial fill compensation
@@ -393,3 +393,19 @@ class SMAOffset_Hippocritical_dca(IStrategy):
             ] = 1
 
         return dataframe
+
+    @property
+    def protections(self):
+        return [
+            {
+                "method": "CooldownPeriod",
+                "stop_duration_candles": 4
+            },
+            {
+                "method": "MaxDrawdown",
+                "lookback_period_candles": 48,
+                "trade_limit": 20,
+                "stop_duration_candles": 4,
+                "max_allowed_drawdown": 0.2
+            }
+        ]
