@@ -357,7 +357,7 @@ class Auto_EI_t4c0s(IStrategy):
 
         return True
 
-    def custom_sell(self, pair: str, trade: 'Trade', current_time: 'datetime', current_rate: float, current_profit: float, **kwargs):
+    def custom_exit(self, pair: str, trade: 'Trade', current_time: 'datetime', current_rate: float, current_profit: float, **kwargs):
         # Sell any positions at a loss if they are held for more than X days.
         if current_profit < -self.unclog4.value and (current_time - trade.open_date_utc).days >= self.day4.value:
             return 'unclog 4'
@@ -369,17 +369,12 @@ class Auto_EI_t4c0s(IStrategy):
             return 'unclog 1'
     
     # Sell signal
-    use_sell_signal = True
-    sell_profit_only = True
-    sell_profit_offset = 0.01
-    ignore_roi_if_buy_signal = False
-
+    use_exit_signal = True
+    exit_profit_only = True
+    exit_profit_offset = 0.01
+    ignore_roi_if_entry_signal = False
     ## Optional order time in force.
-    order_time_in_force = {
-        'buy': 'gtc',
-        'sell': 'gtc'
-    }
-
+    order_time_in_force = {'entry': 'gtc', 'exit': 'gtc'}
     # Optimal timeframe for the strategy
     timeframe = '5m'
 
