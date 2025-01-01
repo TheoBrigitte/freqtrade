@@ -1,0 +1,36 @@
+{
+    "dry_run": true,
+    "dry_run_wallet": 1000,
+    "max_open_trades": 5,
+    "stake_amount": 100,
+    "stake_currency": "USDT",
+    "amend_last_stake_amount": true,
+    "tradable_balance_ratio": 1.00,
+    "unfilledtimeout": {
+        "entry": 10,
+        "exit": 20
+    },
+    "entry_pricing": {
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_side": "same",
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "use_order_book": true,
+        "order_book_top": 1
+    },
+    "order_types" : {
+        "entry": "limit",
+        "exit": "limit",
+        "emergency_exit": "limit",
+        "force_exit": "limit",
+        "force_entry": "limit",
+        "stoploss": "limit",
+        "stoploss_on_exchange": false,
+        "stoploss_on_exchange_interval": 60
+    }
+}
