@@ -23,7 +23,7 @@ get_args() {
 
   args+=(--config ./config/config_blacklist_stablecoins.json)
   #args+=(--config ./config/config_fix10100.json)
-  args+=(--config ./config/config_3unlimited.json)
+  args+=(--config ./config/config_stake_3unlimited.json)
 
   args+=(--user-data-dir $FREQTRADE_DIR/user_data)
 
