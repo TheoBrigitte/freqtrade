@@ -1,0 +1,57 @@
+{
+  "max_open_trades": 6,
+  "stake_currency": "USDT",
+  "stake_amount": 10,
+  "tradable_balance_ratio": 0.9,
+  "dry_run_wallet": 100,
+  "fiat_display_currency": "USD",
+  "timeframe": "5m",
+  "trading_mode": "futures",
+  "margin_mode": "isolated",
+  "stoploss_on_exchange": true,
+  "dry_run": true,
+  "cancel_open_orders_on_exit": false,
+  "unfilledtimeout": {
+    "unit": "minutes",
+    "enter": 10,
+    "exit": 30
+  },
+  "order_types": {
+    "entry": "limit",
+    "exit": "limit",
+    "emergency_exit": "market",
+    "force_entry": "market",
+    "force_exit": "market",
+    "stoploss": "market",
+    "stoploss_on_exchange": false,
+    "stoploss_on_exchange_interval": 60
+  },
+  "entry_pricing": {
+    "price_side": "same",
+    "ask_last_balance": 0,
+    "use_order_book": true,
+    "order_book_top": 1,
+    "check_depth_of_market": {
+      "enabled": false,
+      "bids_to_ask_delta": 1
+    }
+  },
+  "exit_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "pairlists": [
+    {
+      "method": "StaticPairList"
+    },
+    {
+      "method": "PriceFilter",
+      "min_price": 0.05,
+      "low_price_ratio": 0.01
+    }
+  ],
+  "internals": {
+    "process_throttle_secs": 5
+  }
+}
