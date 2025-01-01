@@ -4,6 +4,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source "$SCRIPT_DIR/common.sh"
 
+# Usage
 if [ $# -lt 1 ]; then
   echo "Usage: $(basename $0) <strategy directory or file> [freqtrade options]
 
@@ -14,10 +15,11 @@ fi
 input="$1"
 shift
 
+# Generate strategy list
 source_directory=""
 strategy_list=""
 if [ -d "$input" ]; then
-  source_directory="$input"
+  source_directory="${input%/}"
   if [ -f "$source_directory/whitelist" ]; then
     strategy_list=$(cat "$source_directory/whitelist")
   else
@@ -50,6 +52,7 @@ if [ -f "$source_directory/arguments" ]; then
 	args+=($(cat "$source_directory/arguments"))
 fi
 
+# Execute backtest
 set -eu
 echo "==> backtest start"
 (
@@ -58,6 +61,7 @@ echo "==> backtest start"
   #$FREQTRADE_DIR/.venv/bin/freqtrade backtesting --cache none --disable-max-market-positions --timeframe-detail 1m "${args[@]}" --strategy-list $strategy_list $@
 )
 
+# Execute plot profit
 echo "===> profit plot command"
 echo $FREQTRADE_DIR/.venv/bin/freqtrade plot-profit "${args[@]}" $@ --strategy strategy_name
 if [ $strategy_count -eq 1 ]; then
