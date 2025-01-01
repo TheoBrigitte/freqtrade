@@ -1,5 +1,7 @@
 __pycache__
-strategies/perk
 /freqtrade
 backtest_results/.last_result.json
 backtest_results/*_market_change.feather
+strategies/perk
+scripts/fzf
+scripts/jq
