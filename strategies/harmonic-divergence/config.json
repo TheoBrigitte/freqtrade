@@ -1,4 +1,13 @@
 {
   "timeframe": "15m",
-  "max_open_trades": 10
+  "max_open_trades": 10,
+  "stoploss": -0.2,
+  "trailing_stop": true,
+  "trailing_stop_positive": 0.007,
+  "trailing_stop_positive_offset": 0.015,
+  "trailing_only_offset_is_reached": true,
+  "minimal_roi": {
+    "0": 0.02,
+    "240" : 0
+  }
 }
