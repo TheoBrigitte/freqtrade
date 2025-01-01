@@ -1,0 +1,12 @@
+{
+  "timeframe": "5m",
+  "max_open_trades": 3,
+  "stake_amount": "unlimited",
+  "minimal_roi": {
+    "0": 10
+  },
+  "trailing_stop": true,
+  "trailing_stop_positive": 0.001,
+  "trailing_stop_positive_offset": 0.016,
+  "trailing_only_offset_is_reached": true
+}
