@@ -7,5 +7,7 @@ source "$SCRIPT_DIR/common.sh"
 action=$1
 shift
 
+args=($(get_args))
+
 set -x
 $FREQTRADE_DIR/.venv/bin/freqtrade $action "${args[@]}" $@

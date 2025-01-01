@@ -15,6 +15,8 @@ timerange format: YYYYMMDD-YYYYMMDD, e.g. 20230301-20230601"
   exit 1
 fi
 
+args=($(get_args))
+
 (
   set -x
   $FREQTRADE_DIR/.venv/bin/freqtrade download-data ${args[@]} --timerange "$1" --timeframe $timeframe

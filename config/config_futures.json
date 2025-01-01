@@ -1,40 +1,4 @@
 {
-  "dry_run": true,
-  "dry_run_wallet": 1000,
-  "max_open_trades": -1,
-  "stake_currency": "USDT",
-  "stake_amount": 100,
-  "tradable_balance_ratio": 0.99,
-  "fiat_display_currency": "USD",
   "trading_mode": "futures",
-  "margin_mode": "isolated",
-  "trailing_stop": false,
-  "trailing_only_offset_is_reached": false,
-  "use_exit_signal": true,
-  "unfilledtimeout": {
-    "entry": 5,
-    "exit": 20,
-    "exit_timeout_count": 0,
-    "unit": "minutes"
-  },
-  "entry_pricing": {
-    "price_side": "other",
-    "use_order_book": true,
-    "order_book_top": 1
-  },
-  "exit_pricing": {
-    "price_side": "other",
-    "use_order_book": true,
-    "order_book_top": 1
-  },
-  "order_types": {
-      "entry": "limit",
-      "exit": "market",
-      "emergency_exit": "market",
-      "force_entry": "market",
-      "force_exit": "market",
-      "stoploss": "market",
-      "stoploss_on_exchange": false,
-      "stoploss_on_exchange_interval": 60
-  }
+  "margin_mode": "isolated"
 }

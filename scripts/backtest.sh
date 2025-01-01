@@ -29,12 +29,11 @@ else
 fi
 
 strategy_count=$(echo "$strategy_list" | wc -w)
-
 echo "==> strategy directory: $source_directory"
 echo "==> strategy list ($strategy_count) : $strategy_list"
 
-#args+=(--timerange 20230301-20230601)
-
+# Generate arguments
+args=($(get_args))
 #args+=(--recursive-strategy-search)
 args+=(--strategy-path $source_directory)
 

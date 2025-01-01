@@ -11,6 +11,8 @@ This script will call test-pairlist and generate a pairlist.json file."
   exit 1
 fi
 
+args=($(get_args))
+
 args+=(
   --config $1
 )
