@@ -6,18 +6,15 @@ from freqtrade.strategy import merge_informative_pair, DecimalParameter, stoplos
 from pandas import DataFrame, Series
 from datetime import datetime
 
-
 def bollinger_bands(stock_price, window_size, num_of_std):
     rolling_mean = stock_price.rolling(window=window_size).mean()
     rolling_std = stock_price.rolling(window=window_size).std()
     lower_band = rolling_mean - (rolling_std * num_of_std)
     return np.nan_to_num(rolling_mean), np.nan_to_num(lower_band)
 
-
 def ha_typical_price(bars):
     res = (bars['ha_high'] + bars['ha_low'] + bars['ha_close']) / 3.
     return Series(index=bars.index, data=res)
-
 
 class ClucHAnix_5m(IStrategy):
     """
@@ -25,7 +22,7 @@ class ClucHAnix_5m(IStrategy):
     Can be overridden for specific sub-strategies (stake currencies) at the bottom.
     """
     
-    #hypered params
+    # Original author's params
     buy_params = {
         "bbdelta_close": 0.01889,
         "bbdelta_tail": 0.72235,
@@ -34,7 +31,6 @@ class ClucHAnix_5m(IStrategy):
         "rocr_1h": 0.79492,
     }
 
-    # Sell hyperspace params:
     sell_params = {
         # custom stoploss params, come from BB_RPB_TSL
         "pHSL": -0.35,
@@ -47,6 +43,117 @@ class ClucHAnix_5m(IStrategy):
         'sell_fisher': 0.39075,
         'sell_bbmiddle_close': 0.99754
     }
+
+    # ==========================================================================
+    # Best
+    # buy_params = {
+    #     "bbdelta_close": 0.00945,
+    #     "bbdelta_tail": 0.93431,
+    #     "close_bblower": 0.01046,
+    #     "closedelta_close": 0.01101,
+    #     "rocr_1h": 0.60146,
+    # }
+
+    # sell_params = {
+    #     "pHSL": -0.436,
+    #     "pPF_1": 0.008,
+    #     "pPF_2": 0.071,
+    #     "pSL_1": 0.009,
+    #     "pSL_2": 0.064,
+    #     "sell_bbmiddle_close": 1.05886,
+    #     "sell_fisher": 0.41716,
+    # }
+
+    # ==========================================================================
+    # Hyperopt 371
+    # buy_params = {
+    #     "bbdelta_close": 0.00841,
+    #     "bbdelta_tail": 0.98675,
+    #     "close_bblower": 0.01486,
+    #     "closedelta_close": 0.00942,
+    #     "rocr_1h": 0.53463,
+    # }
+
+    # sell_params = {
+    #     "pHSL": -0.322,
+    #     "pPF_1": 0.014,
+    #     "pPF_2": 0.053,
+    #     "pSL_1": 0.019,
+    #     "pSL_2": 0.039,
+    #     "sell_bbmiddle_close": 1.07257,
+    #     "sell_fisher": 0.47514,
+    # }
+
+    # ==========================================================================
+    # Hyperopt 91
+    buy_params = {
+        "bbdelta_close": 0.00774,
+        "bbdelta_tail": 0.99061,
+        "close_bblower": 0.01027,
+        "closedelta_close": 0.00871,
+        "rocr_1h": 0.52805,
+    }
+
+    sell_params = {
+        "pHSL": -0.291,
+        "pPF_1": 0.009,
+        "pPF_2": 0.1,
+        "pSL_1": 0.012,
+        "pSL_2": 0.068,
+        "sell_bbmiddle_close": 1.09653,
+        "sell_fisher": 0.37332,
+    }
+
+    # ==========================================================================
+    # Hyperopt 87
+    # buy_params = {
+    #     "bbdelta_close": 0.00546,
+    #     "bbdelta_tail": 0.96195,
+    #     "close_bblower": 0.00167,
+    #     "closedelta_close": 0.00842,
+    #     "rocr_1h": 0.60672,
+    # }
+    #
+    # sell_params = {
+    #     "pHSL": -0.331,
+    #     "pPF_1": 0.009,
+    #     "pPF_2": 0.091,
+    #     "pSL_1": 0.012,
+    #     "pSL_2": 0.068,
+    #     "sell_bbmiddle_close": 1.05042,
+    #     "sell_fisher": 0.4626,
+    # }
+
+    # ==========================================================================
+
+    @property
+    def plot_config(self):
+        """
+            There are a lot of solutions how to build the return dictionary.
+            The only important point is the return value.
+            Example:
+                plot_config = {'main_plot': {}, 'subplots': {}}
+
+        """
+
+        plot_config = {}
+
+        # Main plot
+        plot_config["main_plot"] = {
+            "bb_lowerband",
+            "bb_middleband",
+            "ema_fast",
+            "ema_slow",
+        }
+
+        plot_config["subplots"] = {
+            "Mean Volume": {
+                "volume_mean_slow": {"color": "#A1A2CF"}
+            },
+            "ROCR_1h" : {
+                "rocr_1h": {"color": "#7D2C34"}
+            }
+        }
 
     # ROI table:
     minimal_roi = {
@@ -69,9 +176,9 @@ class ClucHAnix_5m(IStrategy):
     timeframe = '5m'
 
     # Make sure these match or are not overridden in config
-    use_exit_signal = True
-    exit_profit_only = False
-    ignore_roi_if_entry_signal = False
+    use_sell_signal = True
+    sell_profit_only = False
+    ignore_roi_if_buy_signal = False
 
     # Custom stoploss
     use_custom_stoploss = True
@@ -79,11 +186,24 @@ class ClucHAnix_5m(IStrategy):
     process_only_new_candles = True
     startup_candle_count = 168
 
+    # order_types = {
+    #     'buy': 'limit',
+    #     'sell': 'limit',
+    #     'emergencysell': 'limit',
+    #     'forcebuy': "limit",
+    #     'forcesell': 'limit',
+    #     'stoploss': 'limit',
+    #     'stoploss_on_exchange': False,
+    #
+    #     'stoploss_on_exchange_interval': 60,
+    #     'stoploss_on_exchange_limit_ratio': 0.99
+    # }
+
     order_types = {
-        'entry': 'market',
-        'exit': 'market',
+        'buy': 'market',
+        'sell': 'market',
         'emergencysell': 'market',
-        'forcebuy': "market",
+        'forcebuy': 'market',
         'forcesell': 'market',
         'stoploss': 'market',
         'stoploss_on_exchange': False,
@@ -93,25 +213,25 @@ class ClucHAnix_5m(IStrategy):
     }
 
     # buy params
-    rocr_1h = RealParameter(0.5, 1.0, default=0.54904, space='buy', optimize=True)
-    bbdelta_close = RealParameter(0.0005, 0.02, default=0.01965, space='buy', optimize=True)
-    closedelta_close = RealParameter(0.0005, 0.02, default=0.00556, space='buy', optimize=True)
-    bbdelta_tail = RealParameter(0.7, 1.0, default=0.95089, space='buy', optimize=True)
-    close_bblower = RealParameter(0.0005, 0.02, default=0.00799, space='buy', optimize=True)
+    rocr_1h = RealParameter(0.5, 1.0, default=buy_params['rocr_1h'], space='buy', optimize=True)
+    bbdelta_close = RealParameter(0.0005, 0.02, default=buy_params['bbdelta_close'], space='buy', optimize=True)
+    closedelta_close = RealParameter(0.0005, 0.02, default=buy_params['closedelta_close'], space='buy', optimize=True)
+    bbdelta_tail = RealParameter(0.7, 1.0, default=buy_params['bbdelta_tail'], space='buy', optimize=True)
+    close_bblower = RealParameter(0.0005, 0.02, default=buy_params['close_bblower'], space='buy', optimize=True)
 
     # sell params
-    sell_fisher = RealParameter(0.1, 0.5, default=0.38414, space='sell', optimize=True)
-    sell_bbmiddle_close = RealParameter(0.97, 1.1, default=1.07634, space='sell', optimize=True)
+    sell_fisher = RealParameter(0.1, 0.5, default=sell_params['sell_fisher'], space='sell', optimize=True)
+    sell_bbmiddle_close = RealParameter(0.97, 1.1, default=sell_params['sell_bbmiddle_close'], space='sell', optimize=True)
 
     # hard stoploss profit
-    pHSL = DecimalParameter(-0.500, -0.040, default=-0.08, decimals=3, space='sell', load=True)
+    pHSL = DecimalParameter(-0.500, -0.040, default=sell_params['pHSL'], decimals=3, space='sell', load=True)
     # profit threshold 1, trigger point, SL_1 is used
-    pPF_1 = DecimalParameter(0.008, 0.020, default=0.016, decimals=3, space='sell', load=True)
-    pSL_1 = DecimalParameter(0.008, 0.020, default=0.011, decimals=3, space='sell', load=True)
+    pPF_1 = DecimalParameter(0.008, 0.020, default=sell_params['pPF_1'], decimals=3, space='sell', load=True)
+    pSL_1 = DecimalParameter(0.008, 0.020, default=sell_params['pSL_1'], decimals=3, space='sell', load=True)
 
     # profit threshold 2, SL_2 is used
-    pPF_2 = DecimalParameter(0.040, 0.100, default=0.080, decimals=3, space='sell', load=True)
-    pSL_2 = DecimalParameter(0.020, 0.070, default=0.040, decimals=3, space='sell', load=True)
+    pPF_2 = DecimalParameter(0.040, 0.100, default=sell_params['pPF_2'], decimals=3, space='sell', load=True)
+    pSL_2 = DecimalParameter(0.020, 0.070, default=sell_params['pSL_2'], decimals=3, space='sell', load=True)
 
     def informative_pairs(self):
         pairs = self.dp.current_whitelist()
@@ -189,7 +309,7 @@ class ClucHAnix_5m(IStrategy):
 
         return dataframe
 
-    def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+    def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
         dataframe.loc[
             (
@@ -212,7 +332,7 @@ class ClucHAnix_5m(IStrategy):
 
         return dataframe
 
-    def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+    def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
         dataframe.loc[
             (dataframe['fisher'] > self.sell_fisher.value) &
