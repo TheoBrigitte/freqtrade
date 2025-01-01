@@ -76,6 +76,9 @@ case "$ACTION" in
     ;;
 esac
 
+# Install additional tools
+install_tools
+
 # Symlink freqtrade's backtest results to repository root directory
 ln -fTsrv "$SCRIPT_DIR/../backtest_results" "$FREQTRADE_DIR/user_data/backtest_results"
 

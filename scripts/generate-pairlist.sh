@@ -17,6 +17,6 @@ args+=(
   --config $1
 )
 
-pairs="$($FREQTRADE_DIR/.venv/bin/freqtrade test-pairlist ${args[@]} --print-json | jq -cr .)"
-jq '.exchange.pair_whitelist='"$pairs" ./pairlist/binance-pairlist-template.json > pairlist.json
+pairs="$($FREQTRADE_DIR/.venv/bin/freqtrade test-pairlist ${args[@]} --print-json | $JQ_BIN -cr .)"
+$JQ_BIN '.exchange.pair_whitelist='"$pairs" ./pairlist/binance-pairlist-template.json > pairlist.json
 echo "==> generated: pairlist.json"
