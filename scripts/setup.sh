@@ -76,4 +76,7 @@ case "$ACTION" in
     ;;
 esac
 
+# Symlink freqtrade's backtest results to repository root directory
+ln -fTsrv "$SCRIPT_DIR/../backtest_results" "$FREQTRADE_DIR/user_data/backtest_results"
+
 echo "===> done"
