@@ -1,0 +1,102 @@
+[submodule "sources/cryptofrog-strategies"]
+	path = sources/cryptofrog-strategies
+	url = git@github.com:froggleston/cryptofrog-strategies.git
+[submodule "sources/E0V1E-DCA"]
+	path = sources/E0V1E-DCA
+	url = git@github.com:28dec/E0V1E-DCA.git
+[submodule "sources/ExaByt3s_strategies"]
+	path = sources/ExaByt3s_strategies
+	url = git@github.com:ExaByt3s/strategies.git
+[submodule "sources/Foxel05_freqtrade-stuff"]
+	path = sources/Foxel05_freqtrade-stuff
+	url = git@github.com:Foxel05/freqtrade-stuff.git
+[submodule "sources/freq-strategies"]
+	path = sources/freq-strategies
+	url = git@github.com:tutecode/freq-strategies.git
+[submodule "sources/freqstrategies"]
+	path = sources/freqstrategies
+	url = git@github.com:hammaal/freqstrategies.git
+[submodule "sources/Freqtrade-Adaptive-Renko-Strategy"]
+	path = sources/Freqtrade-Adaptive-Renko-Strategy
+	url = git@github.com:HeyMrRobot/Freqtrade-Adaptive-Renko-Strategy.git
+[submodule "sources/FreqtradeHelpers"]
+	path = sources/FreqtradeHelpers
+	url = git@github.com:hippocritical/FreqtradeHelpers.git
+[submodule "sources/freqtrade_kanaxe"]
+	path = sources/freqtrade_kanaxe
+	url = git@github.com:/kanaxe/freqtrade_kanaxe.git
+[submodule "sources/freqtrade-strategies"]
+	path = sources/freqtrade-strategies
+	url = git@github.com:/freqtrade/freqtrade-strategies.git
+[submodule "sources/freqtradestrategies"]
+	path = sources/freqtradestrategies
+	url = git@github.com:thinkong/freqtradestrategies.git
+[submodule "sources/freqtrade-strategies-that-work"]
+	path = sources/freqtrade-strategies-that-work
+	url = git@github.com:/paulcpk/freqtrade-strategies-that-work.git
+[submodule "sources/freqtrade-strategies_werkkrew"]
+	path = sources/freqtrade-strategies_werkkrew
+	url = git@github.com:werkkrew/freqtrade-strategies.git
+[submodule "sources/freqtrade_strs"]
+	path = sources/freqtrade_strs
+	url = git@github.com:ssssi/freqtrade_strs.git
+[submodule "sources/freqtrade-stuff"]
+	path = sources/freqtrade-stuff
+	url = git@github.com:/brookmiles/freqtrade-stuff.git
+[submodule "sources/freqtrade-stuff_PeetCrypto"]
+	path = sources/freqtrade-stuff_PeetCrypto
+	url = git@github.com:/PeetCrypto/freqtrade-stuff
+[submodule "sources/GeneTrader"]
+	path = sources/GeneTrader
+	url = git@github.com:imsatoshi/GeneTrader.git
+[submodule "sources/hippo_strategies"]
+	path = sources/hippo_strategies
+	url = git@github.com:/hippocritical/strategies.git
+[submodule "sources/i1ya-freqtrade-strategies"]
+	path = sources/i1ya-freqtrade-strategies
+	url = git@github.com:/i1ya/freqtrade-strategies.git
+[submodule "sources/jilv220_freqtrade-stuff"]
+	path = sources/jilv220_freqtrade-stuff
+	url = git@github.com:jilv220/freqtrade-stuff.git
+[submodule "sources/kemplail-freqtrade-stuff"]
+	path = sources/kemplail-freqtrade-stuff
+	url = git@github.com:kemplail/freqtrade-stuff.git
+[submodule "sources/kistenmo20-freqtrade-strategies"]
+	path = sources/kistenmo20-freqtrade-strategies
+	url = git@github.com:kristenmo20/freqtrade-strategies.git
+[submodule "sources/luutac_ft_userdata"]
+	path = sources/luutac_ft_userdata
+	url = git@github.com:luutac/ft_userdata.git
+[submodule "sources/mkavinkumar1_NostalgiaForInfinity"]
+	path = sources/mkavinkumar1_NostalgiaForInfinity
+	url = git@github.com:mkavinkumar1/NostalgiaForInfinity.git
+[submodule "sources/MoniGoMani"]
+	path = sources/MoniGoMani
+	url = git@github.com:/Rikj000/MoniGoMani.git
+[submodule "sources/MultiMA_TSL"]
+	path = sources/MultiMA_TSL
+	url = git@github.com:/stash86/MultiMA_TSL.git
+[submodule "sources/nateemma_strategies"]
+	path = sources/nateemma_strategies
+	url = git@github.com:nateemma/strategies.git
+[submodule "sources/NostalgiaForInfinity"]
+	path = sources/NostalgiaForInfinity
+	url = git@github.com:/iterativv/NostalgiaForInfinity.git
+[submodule "sources/NostalgiaForInfinityData"]
+	path = sources/NostalgiaForInfinityData
+	url = git@github.com:iterativv/NostalgiaForInfinityData.git
+[submodule "sources/optimize-trading-strategy-using-freqtrade"]
+	path = sources/optimize-trading-strategy-using-freqtrade
+	url = git@github.com:devbootstrap/optimize-trading-strategy-using-freqtrade.git
+[submodule "sources/pairlist_generator"]
+	path = sources/pairlist_generator
+	url = git@github.com:hippocritical/pairlist_generator.git
+[submodule "sources/pyalgotrader"]
+	path = sources/pyalgotrader
+	url = git@github.com:nicnl31/pyalgotrader.git
+[submodule "sources/stash86_freqtrade_stuff"]
+	path = sources/stash86_freqtrade_stuff
+	url = git@github.com:stash86/freqtrade_stuff.git
+[submodule "sources/yodostrats"]
+	path = sources/yodostrats
+	url = git@github.com:Yodolescrypto/yodostrats.git
