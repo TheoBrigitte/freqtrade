@@ -79,7 +79,8 @@ esac
 # Install additional tools
 install_tools
 
-# Symlink freqtrade's backtest results to repository root directory
+# Replace freqtrade's backtest results with symlink to this repository backtest_results
+test -d "$FREQTRADE_DIR/user_data/backtest_results" && rm -r "$FREQTRADE_DIR/user_data/backtest_results"
 ln -fTsrv "$SCRIPT_DIR/../backtest_results" "$FREQTRADE_DIR/user_data/backtest_results"
 
 echo "===> done"
