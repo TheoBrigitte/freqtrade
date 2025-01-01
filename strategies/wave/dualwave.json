@@ -1,0 +1,86 @@
+{
+  "strategy_name": "dualwave",
+  "params": {
+    "roi": {
+      "0": 0.215
+    },
+    "buy": {
+      "max_length": 48,
+      "auto_buy": 5,
+      "auto_buy_bearzzz": 9,
+      "fast_wave_buy": 48,
+      "fast_wave_buy_pc": 3,
+      "from15": 17,
+      "from2": 27,
+      "rsi_buy": 56,
+      "rsi_buy_safe": 49,
+      "rsi_ma_buypc": -3,
+      "slow_wave_buy": -8,
+      "slow_wave_buy_pc": -1,
+      "sma200_buy_pc": -3,
+      "willr_buy": -49,
+      "x01": 1.9,
+      "x02": 1.8,
+      "x03": 3.0,
+      "x04": 1.5,
+      "x05": 1.3,
+      "x06": 2.3,
+      "x07": 1.6,
+      "x08": 2.6,
+      "x09": 3.5,
+      "x10": 4.8
+    },
+    "sell": {
+      "auto_sell": 5,
+      "fast_wave_sell": -21,
+      "filterlength": 19,
+      "rsi_ma_sellpc": 1,
+      "rsi_sell": 60,
+      "rsi_sell_safe": 68,
+      "slow_wave_sell": 9,
+      "sma200_sell_pc": 0,
+      "ts0": 0.015,
+      "ts1": 0.013,
+      "ts2": 0.027,
+      "ts3": 0.028,
+      "ts4": 0.04,
+      "ts5": 0.046,
+      "tsl_target0": 0.056,
+      "tsl_target1": 0.073,
+      "tsl_target2": 0.09,
+      "tsl_target3": 0.148,
+      "tsl_target4": 0.172,
+      "tsl_target5": 0.4,
+      "willr_sell": -27,
+      "y01": 4.4,
+      "y02": 1.1,
+      "y03": 2.0,
+      "y04": 1.7,
+      "y05": 2.4,
+      "y06": 0.7,
+      "y07": 3.1,
+      "y08": 1.4,
+      "y09": 3.1,
+      "y10": 4.7
+    },
+    "protection": {
+      "cooldown_lookback": 48,
+      "stop_duration": 75,
+      "use_stop_protection": true
+    },
+    "stoploss": {
+      "stoploss": -0.203
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.12,
+      "trailing_stop_positive_offset": 0.128,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 5
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-12-08 16:08:20.606868+00:00"
+}

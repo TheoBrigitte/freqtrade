@@ -1,0 +1,80 @@
+{
+  "strategy_name": "TRIWAVE",
+  "params": {
+    "roi": {
+      "0": 0.215
+    },
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "max_length": 48,
+      "auto_buy": 7,
+      "auto_buy_bearzzz": 9,
+      "bull": -0.14,
+      "rsi_buy": 60,
+      "rsi_buy_safe": 42,
+      "rsi_ma_buypc": 3,
+      "sma200_buy_pc": -2,
+      "willr_buy": -36,
+      "x1": 0.4,
+      "x10": 1.9,
+      "x2": 1.1,
+      "x3": 1.5,
+      "x4": 2.6,
+      "x5": 4.0,
+      "x6": 4.9,
+      "x7": 4.9,
+      "x8": 1.8,
+      "x9": 1.1
+    },
+    "sell": {
+      "auto_sell": 9,
+      "estop": -0.33,
+      "filterlength": 16,
+      "rsi_ma_sellpc": 5,
+      "rsi_sell": 62,
+      "rsi_sell_safe": 64,
+      "sma200_sell_pc": -4,
+      "ts0": 0.009,
+      "ts1": 0.012,
+      "ts2": 0.021,
+      "ts3": 0.025,
+      "ts4": 0.044,
+      "ts5": 0.042,
+      "tsl_target0": 0.03,
+      "tsl_target1": 0.05,
+      "tsl_target2": 0.065,
+      "tsl_target3": 0.104,
+      "tsl_target4": 0.212,
+      "tsl_target5": 0.4,
+      "willr_sell": -24,
+      "y1": 2.4,
+      "y10": 0.4,
+      "y2": 2.8,
+      "y3": 1.5,
+      "y4": 2.6,
+      "y5": 0.6,
+      "y6": 2.3,
+      "y7": 2.0,
+      "y8": 3.8,
+      "y9": 4.3
+    },
+    "protection": {
+      "cooldown_lookback": 46,
+      "stop_duration": 5,
+      "use_stop_protection": true
+    },
+    "stoploss": {
+      "stoploss": -0.309
+    },
+    "max_open_trades": {
+      "max_open_trades": 4
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-12-08 22:17:34.998088+00:00"
+}
