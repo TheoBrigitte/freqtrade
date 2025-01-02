@@ -1,9 +1,11 @@
 {
   "max_open_trades": 4,
   "timeframe": "5m",
-  "stoploss": -0.2,
-  "minimal_roi": {
-    "0": 0.02,
-    "120": 0
-  }
+  "stoploss": -0.3,
+  "position_adjustment_enable": false,
+  "trailing_stop": false,
+  //"minimal_roi": {
+  //  "0": 0.02,
+  //  "120": 0
+  //}
 }
