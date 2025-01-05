@@ -11,25 +11,25 @@ FZF_BIN="${SCRIPT_DIR}/fzf"
 get_args() {
   args=()
 
-  args+=(--config ./config/config_base.json)
-  #args+=(--config ./config/config_baseline.json)
+  args+=(--config "$SCRIPT_DIR/../config/config_base.json")
+  #args+=(--config "$SCRIPT_DIR/../config/config_baseline.json")
 
   if [ "$FREQTRADE_MODE" == "futures" ]; then
-    args+=(--config ./config/config_futures.json)
+    args+=(--config "$SCRIPT_DIR/../config/config_futures.json")
 
-    args+=(--config ./pairlist/binance-usdt-static_futures.json)
-    #args+=(--config ./pairlist/monthly_60_USDT_0,0_minprice_current.json)
+    args+=(--config "$SCRIPT_DIR/../pairlist/pairlist_futures.json")
+    #args+=(--config "$SCRIPT_DIR/../pairlist/monthly_60_USDT_0,0_minprice_current.json")
   else
-    args+=(--config ./pairlist/binance-usdt-static_spot.json)
-    #args+=(--config ./pairlist/monthly_60_USDT_0,05_minprice_current_1.json)
+    args+=(--config "$SCRIPT_DIR/../pairlist/pairlist_spot.json")
+    #args+=(--config "$SCRIPT_DIR/../pairlist/monthly_60_USDT_0,05_minprice_current_1.json")
 
-    #args+=(--config ./config/config_spot_usdc.json)
-    #args+=(--config ./pairlist/hyperliquid-usdc-static_spot.json)
+    #args+=(--config "$SCRIPT_DIR/../config/config_spot_usdc.json")
+    #args+=(--config "$SCRIPT_DIR/../pairlist/hyperliquid-usdc-static_spot.json")
   fi
 
-  args+=(--config ./config/config_blacklist_stablecoins.json)
-  #args+=(--config ./config/config_fix10100.json)
-  args+=(--config ./config/config_stake_3unlimited.json)
+  args+=(--config "$SCRIPT_DIR/../pairlist/blacklist.json")
+  #args+=(--config "$SCRIPT_DIR/../config/config_fix10100.json")
+  args+=(--config "$SCRIPT_DIR/../config/config_stake.json")
 
   args+=(--user-data-dir $FREQTRADE_DIR/user_data)
 
