@@ -4,7 +4,7 @@ Freqtrade is a free and open source crypto trading bot written in Python.
 
 This repository is a collection of strategies, configurations, dry-run and backtest results I collected overtime.
 
-### Disclaimer
+## Disclaimer
 
 I am not a financial advisor and I am not responsible for any financial loss you might incur using this repository.
 
@@ -27,7 +27,7 @@ Freqtrade can later be updated with the following command
 scripts/setup.sh -u
 ```
 
-### Repository structure
+## Repository structure
 
 - `backtest_results/` - Contains my backtest results, good or bad, they are all here
 - `config/`          - Contains a bunch of configurations I found, some I used, some I didn't
@@ -36,7 +36,7 @@ scripts/setup.sh -u
 - `strategies/`       - Contains all strategies I found and played with. Folder names are arbitrary and each folder might contain additional configurations for the specific strategy(ies)
 - `sources/`          - Contains sources of strategies I found. They mainly are git submodules to other repositories
 
-### How I use this repository
+## How I use this repository
 
 Freqtrade virtual environment should be loaded first
 
@@ -66,7 +66,15 @@ fw plot-profit backtest_results/backtest-result-2025-01-01_01-01-01.json
 Based on my observations I might tweak the strategy or the configuration and run the tests again.
 Configuration tweaking for this strategy would go in `strategies/BinHV45/config.json`.
 
-### Backtest results interpretation
+### Navigate backtest results
+
+I usually use the following command to navigate through backtest results
+
+```bash
+scripts/backtest-browser.sh
+```
+
+## Backtest results interpretation
 
 Many aspects comes into play when it comes to evaluating a strategy. Backtest results are the first step I use to evaluate a strategy.
 Once I found something that looks promising I will run a dry-run over couple of weeks and ideally months to see how it performs in near real conditions.
@@ -81,14 +89,6 @@ Drawdown: The maximum drawdown of the strategy. This depends on your risk tolera
 This is a very high level overview and there are many other metrics and aspects to consider.
 
 Here is a good knowledge base to learn from: https://botacademy.ddns.net
-
-### Navigate backtest results
-
-I usually use the following command to navigate through backtest results
-
-```bash
-scripts/backtest-browser.sh
-```
 
 # Credits
 
