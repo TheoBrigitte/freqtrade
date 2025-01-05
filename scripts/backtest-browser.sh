@@ -5,6 +5,8 @@ PATH="$SCRIPT_DIR:$PATH"
 
 source "$SCRIPT_DIR/common.sh"
 
+install_tools
+
 freqtrade_args=($(get_args))
 freqtrade_cmd="$FREQTRADE_DIR/.venv/bin/freqtrade backtesting-show ${freqtrade_args[@]} --export-filename"
 backtest_results_dir="$SCRIPT_DIR/../backtest_results"
