@@ -1,0 +1,458 @@
+#!/usr/bin/env python3
+
+import json
+import os
+import signal
+import subprocess
+import sys
+from pathlib import Path
+from freqtrade.resolvers import StrategyResolver
+from freqtrade.exchange import timeframe_to_seconds
+from freqtrade.configuration.load_config import load_config_file
+from freqtrade.util import print_rich_table
+#from freqtrade_score import compute_strategy_score
+
+# Set up paths
+SCRIPT_DIR = os.path.dirname(__file__)
+WORKBENCH_DIR = os.path.relpath(os.path.join(SCRIPT_DIR, ".."))
+FREQTRADE_DIR = os.path.join(WORKBENCH_DIR, "freqtrade")
+FREQTRADE_BIN = "freqtrade"
+BIN_NAME = os.path.basename(sys.argv[0])
+
+class FWError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return(repr(self.value))
+
+##########################
+# Configuration handling
+
+# Add base arguments to freqtrade command
+#  - Base configuration
+#  - Pair list: use FREQTRADE_MODE environment variable to determine spot or futures mode (default: spot)
+#  - Pair blacklist
+#  - Stake
+#  - User data directory
+def add_base_args(args):
+    args.append(f"--config {WORKBENCH_DIR}/config/config_base.json")
+
+    if os.environ.get("FREQTRADE_MODE", "spot") == "futures":
+        args.append(f"--config {WORKBENCH_DIR}/config/config_futures.json")
+        args.append(f"--config {WORKBENCH_DIR}/pairlist/pairlist_futures.json")
+    else:
+        args.append(f"--config {WORKBENCH_DIR}/pairlist/pairlist_spot.json")
+
+    args.append(f"--config {WORKBENCH_DIR}/pairlist/blacklist.json")
+    args.append(f"--config {WORKBENCH_DIR}/config/config_stake.json")
+    args.append(f"--user-data-dir {FREQTRADE_DIR}/user_data")
+
+# Add strategy config override if found
+# Return the loaded strategy config
+def add_strategy_config(strategy_dir, args):
+    if os.path.exists(f"{strategy_dir}/config.json"):
+        args.append(f"--config {strategy_dir}/config.json")
+        return load_config_file(f"{strategy_dir}/config.json")
+
+# Find strategy name from file path
+def strategy_name_from_path(strategy_path):
+    if not strategy_path.is_file():
+        raise FWError("Invalid strategy file path")
+
+    s = next(StrategyResolver._get_valid_object(strategy_path, None))
+    if s is None:
+        eprint("Invalid strategy file")
+        exit(1)
+    return s[0].__name__
+
+# Find strategy names from path(s)
+# If the fist argument is a directory, load all strategies in the directory
+# If a whitelist file is found in the directory, load strategies from the whitelist file
+# Otherwise, load strategies from the provided file paths, stops at the first non-existing file
+# Only support loading strategies from the same directory
+# Return a list of strategy names, the strategy path, and additional remaining arguments
+def strategy_names_from_path(args):
+    if len(args) < 1:
+        raise FWError("Please provide a path to a strategy file or directory")
+
+    if not os.path.exists(args[0]):
+        raise FWError(f"Invalid path: {args[0]}")
+
+    first_path = Path(args[0])
+    if first_path.is_dir():
+        strategy_dir = first_path
+        if os.path.exists(f"{strategy_dir}/whitelist"):
+            # Load strategies from whitelist file
+            with open(f"{strategy_dir}/whitelist", "r") as f:
+                strategy_names = f.read().splitlines()
+        else:
+            # Load all strategies in the directory
+            s = StrategyResolver._search_all_objects(strategy_dir, False)
+            strategy_names = [strategy["name"] for strategy in s]
+        return strategy_names, strategy_dir, args[1:]
+
+    strategy_names = []
+    strategy_dir = None
+    for i, v in enumerate(args):
+        if os.path.exists(v):
+            strategy_path = Path(v)
+            if strategy_path.is_dir():
+                raise FWError("Cannot mix strategy files and directories")
+            parent = strategy_path.parent
+            if strategy_dir is None:
+                strategy_dir = parent
+            elif strategy_dir != parent:
+                raise FWError("All strategies must be in the same directory")
+            # Load strategy
+            strategy_name = strategy_name_from_path(strategy_path)
+            strategy_names.append(strategy_name)
+        else:
+            return strategy_names, strategy_dir, args[i:]
+
+    return strategy_names, strategy_dir, []
+
+##########################
+# Functions
+
+# Show additional summary for latest backtest results
+# Find the latest backtest results filename from the .last_result.json file
+def latest_backtest_results_additional_summary(filename, strategy_name: None):
+    # Get latest backtest results filename
+    dirname = os.path.dirname(filename)
+    f = open(filename, "r")
+    data = json.load(f)
+    backtest_results_filename = data["latest_backtest"]
+    f.close()
+
+    # Show additional summary
+    backtest_results_additional_summary(os.path.join(dirname, backtest_results_filename), strategy_name)
+
+# Show additional summary for backtest results
+# With the following columns:
+#   - Strategy
+#   - Expectancy
+#   - Profit Factor
+#   - Drawdown
+#   - Avg Profit
+#   - Total Profit
+#   - Stoploss
+#   - Trail. stop
+#   - roi
+def backtest_results_additional_summary(filename, strategy_name: None):
+    f = open(filename, "r")
+    data = json.load(f)
+
+    headers = [
+        "Strategy",
+        "Expectancy",
+        "Profit Factor",
+        "Drawdown",
+        "Avg Profit",
+        "Total Profit",
+        #"Score",
+        "Stoploss",
+        "Trail. stop",
+        "roi",
+    ]
+
+    output = []
+    for name, strategy in data["strategy"].items():
+        expectancy = strategy["expectancy"] # Expectancy
+        profit_factor = strategy["profit_factor"] # Profit Factor
+        max_relative_drawdown = strategy["max_relative_drawdown"] * 100 # Max Drawdown %
+        profit_mean = strategy["profit_mean"] * 100 # Avg Profit %
+        profit_total = strategy["profit_total"] * 100 # Total Profit %
+        stoploss = strategy["stoploss"]
+        trailing_stop = strategy["trailing_stop"]
+        roi = strategy["minimal_roi"]
+
+        # Compute score for each strategy
+        #score = compute_strategy_score(expectancy, profit_factor, max_relative_drawdown, profit_mean, profit_total)
+
+        output.append([
+            name,
+            f"{expectancy:.4f}",
+            f"{profit_factor:.4f}",
+            f"{max_relative_drawdown:.2f}",
+            f"{profit_mean:.2f}",
+            f"{profit_total:.2f}",
+            #f"{score:.2f}",
+            f"{stoploss}",
+            f"{trailing_stop}",
+            f"{roi}",
+        ])
+
+    print_rich_table(output, headers, "ADDITIONAL SUMMARY")
+
+    f.close()
+
+# Print to stderr
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
+
+# Wrapper to run freqtrade
+def run_freqtrade(args, return_output=False):
+    command = f"{FREQTRADE_BIN} " + " ".join(args)
+    eprint(f"==> command: {command}")
+
+    try:
+        if return_output:
+            p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+            output, _ = p.communicate()
+            return output
+        else:
+            p = subprocess.Popen(command, shell=True)
+            p.wait()
+    except KeyboardInterrupt:
+        p.send_signal(signal.SIGINT)
+        exit(0)
+
+##########################
+# Commands
+
+# Run backtesting with pre-defined arguments and show additional summary
+# Arguments:
+#   --cache none
+#   --enable-protections
+#   --timeframe-detail 1m if applicable
+#   --strategy-list <strategy_name>
+#   --strategy-path <strategy_dir>
+def backtesting(sys_args):
+    # Prepare freqtrade arguments
+    args = []
+    args.append(f"backtesting")
+    args.append(f"--cache none")
+    args.append(f"--enable-protections")
+
+    add_base_args(args)
+
+    # Load strategy(ies)
+    strategy_names, strategy_dir, additional_args = strategy_names_from_path(sys_args)
+    strategies = ' '.join(strategy_names)
+    args.append(f"--strategy-list {strategies}")
+    args.append(f"--strategy-path {strategy_dir}")
+
+    # Set strategy config.json if found
+    add_timeframe_detail = True
+    strategy_config = add_strategy_config(strategy_dir, args)
+    if "timeframe" in strategy_config:
+        timeframe = strategy_config["timeframe"]
+        timeframe_seconds = timeframe_to_seconds(timeframe)
+        # Do not set timeframe-detail to 1m for 1m timeframe
+        if timeframe_seconds <= 60:
+            add_timeframe_detail = False
+
+    if add_timeframe_detail:
+        args.append(f"--timeframe-detail 1m")
+
+    args += additional_args
+
+    eprint(f"==> strategy directory: {strategy_dir}")
+    eprint(f"==> strategy list ({len(strategy_names)}): {strategies}")
+
+    run_freqtrade(args)
+
+    latest_backtest_results_additional_summary(f"{FREQTRADE_DIR}/user_data/backtest_results/.last_result.json", None)
+
+# Show backtest results
+def backtesting_show(backtest_results_filename):
+    args = []
+    args.append(f"backtesting-show")
+    add_base_args(args)
+    args.append(f"--export-filename {backtest_results_filename}")
+
+    run_freqtrade(args)
+    backtest_results_additional_summary(f"{backtest_results_filename}", None)
+
+def generate_static_pairlist(pairlist_config):
+    args = []
+    args.append(f"test-pairlist")
+    add_base_args(args)
+    args.append(f"--config {pairlist_config}")
+    args.append(f"--print-json")
+
+    output = run_freqtrade(args, return_output=True)
+    pairlist = json.loads(output)
+
+    with open(f"{WORKBENCH_DIR}/pairlist/binance-pairlist-template.json") as f:
+        template = json.load(f)
+    template["exchange"]["pair_whitelist"] = pairlist
+    with open(f"pairlist.json", "w") as f:
+        json.dump(template, f, indent=4)
+    print(f"==> generated pairlist.json")
+
+# Run lookahead analysis
+def lookahead_analysis(sys_args):
+    args = []
+    args.append(f"lookahead-analysis")
+    add_base_args(args)
+
+    # Load strategy(ies)
+    strategy_names, strategy_dir, additional_args = strategy_names_from_path(sys_args)
+    strategies = ' '.join(strategy_names)
+    args.append(f"--strategy-list {strategies}")
+    args.append(f"--strategy-path {strategy_dir}")
+
+    add_strategy_config(strategy_dir, args)
+
+    args += additional_args
+
+    run_freqtrade(args)
+
+def plot_profit(backtest_results_filename, additional_args):
+    args = []
+    args.append(f"plot-profit")
+    add_base_args(args)
+    args.append(f"--export-filename {backtest_results_filename}")
+
+    strategy_name = None
+    timeframe_set = False
+    for arg in additional_args:
+        if arg.startswith("--timerange"):
+            timeframe_set = True
+        if arg.startswith("--strategy"):
+            strategy_name = additional_args[additional_args.index(arg) + 1]
+        args.append(arg)
+
+    # Find timeframe from backtest results
+    with open(backtest_results_filename, "r") as f:
+        data = json.load(f)
+        if strategy_name is None:
+            timeframes = [strategy["timeframe"] for strategy in data["strategy"].values()]
+        else:
+            if strategy_name not in data["strategy"]:
+                eprint(f"Strategy {strategy_name} not found in backtest results")
+                exit(1)
+            timeframes = [data["strategy"][strategy_name]["timeframe"]]
+
+    unique_timeframes = list(set(timeframes))
+    if len(unique_timeframes) > 1 and not timeframe_set:
+        eprint("Multiple timeframes detected, please provide --timeframe argument")
+    else:
+        args.append(f"--timeframe {unique_timeframes[0]}")
+
+    run_freqtrade(args)
+
+# Run recursive analysis
+def recursive_analysis(sys_args):
+    if len(sys_args) < 1:
+        raise FWError("Please provide a path to a strategy file")
+
+    strategy_path = sys_args[0]
+    additional_args = sys_args[1:]
+
+    args = []
+    args.append("recursive-analysis")
+    add_base_args(args)
+
+    # Load strategy
+    strategy_path = Path(strategy_path)
+    strategy_name = strategy_name_from_path(strategy_path)
+    args.append(f"--strategy {strategy_name}")
+    args.append(f"--strategy-path {strategy_path.parent}")
+
+    add_strategy_config(strategy_path.parent, args)
+
+    args += additional_args
+
+    run_freqtrade(args)
+
+# Run strategy-updater
+def strategy_updater(sys_args):
+    args = []
+    args.append("strategy-updater")
+    add_base_args(args)
+
+    # Load strategy(ies)
+    strategy_names, strategy_dir, additional_args = strategy_names_from_path(sys_args)
+    strategies = ' '.join(strategy_names)
+    args.append(f"--strategy-list {strategies}")
+    args.append(f"--strategy-path {strategy_dir}")
+
+    run_freqtrade(args)
+
+# Print usage
+def usage(args):
+    print(f"Usage: {BIN_NAME} <command> <args>")
+    print(f"Brings the sugar on top of freqtrade and work with multiple configurations and strategies files.")
+    print(f"")
+    print(f"Configurations are loaded from the defined symlinks available in the config and pairlist directories.")
+    print(f"Configurations are split into base and stake, pairlists are split into spot, futures and blacklist.")
+    print(f"Configuration can be overridden by providing a config.json file in the strategy directory.")
+    print(f"Use FREQTRADE_MODE environment variable to switch between spot and futures mode (default: spot).")
+    print(f"")
+    print(f"Strategy(ies) are discovered in the given file or directory path.")
+    print(f"Strategies list can be overridden by providing a whitelist file in the strategy directory.")
+    print(f"")
+    print(f"Commands:")
+    print(f"       backtesting         <strategy file or directory path> [additional_args]  Run backtesting and show additional summary")
+    print(f"       backtesting-show    <backtest_results_filename>                          Show backtest results with additional summary")
+    print(f"       lookahead-analysis  <strategy file or directory path> [additional_args]  Run lookahead analysis")
+    print(f"       recursive-analysis  <strategy file path>              [additional_args]  Run recursive analysis")
+    #print(f"       score <backtest_results_filename> [strategy_name]     Show backtest results and compute score")
+    print(f"       <freqtrade command> <freqtrade_args>                                     Run freqtrade with arguments pre-set")
+    print(f"")
+    print(f"Examples:")
+    print(f"       FREQTRADE_MODE=futures {BIN_NAME} backtesting strategies/BinHV45/ --timerange 20240101-20250101")
+    print(f"       {BIN_NAME} backtesting strategies/BinHV45/ --timerange 20240101-20250101")
+    print(f"       {BIN_NAME} backtesting-show backtest_results/backtest-result-2025-01-01_01-01-01.json")
+    print(f"       {BIN_NAME} download-data --timeframes 1m 3m 5m 15m 30m 1h 4h 12h 1d --timerange 20240101-20250101")
+    print(f"       {BIN_NAME} lookahead-analysis strategies/BinHV45/BinHV45.py --timerange 20240101-20250101")
+    print(f"       {BIN_NAME} plot-profit backtest_results/backtest-result-2025-01-01_01-01-01.json")
+
+##########################
+# Main function
+
+def main(args):
+    if len(args) < 2:
+        usage(args)
+        return 0
+
+    match args[1]:
+        case "backtesting":
+            backtesting(args[2:])
+
+        case "backtesting-show":
+            if len(args) < 3:
+                raise FWError("Please provide a backtest results filename")
+            backtesting_show(args[2])
+
+        case "generate-static-pairlist":
+            if len(args) < 3:
+                raise FWError("Please provide a pairlist config filename")
+            generate_static_pairlist(args[2])
+
+        case "lookahead-analysis":
+            lookahead_analysis(args[2:])
+
+        case "plot-profit":
+            if len(args) < 3:
+                raise FWError("Please provide a backtest results filename")
+            plot_profit(args[2], args[3:])
+
+        case "recursive-analysis":
+            recursive_analysis(args[2:])
+
+        case "strategy-updater":
+            strategy_updater(args[2:])
+
+        #case "score":
+        #    strategy_name = None
+        #    if len(args) > 3:
+        #        strategy_name = args[3]
+
+        #    backtesting_show(args[2])
+        #    backtest_results_additional_summary(args[2], strategy_name)
+
+        case _:
+            args = args[1:]
+            add_base_args(args)
+            run_freqtrade(args)
+
+if __name__ == "__main__":
+    try:
+        exit(main(sys.argv))
+    except FWError as e:
+        eprint(f"error: {e}")
+        exit(1)
