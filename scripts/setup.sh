@@ -21,7 +21,7 @@ install() {
   echo "===> install"
   test -e "$FREQTRADE_DIR" && \
     echo "===> already installed"; \
-    exit
+    return
   git clone --branch develop git@github.com:freqtrade/freqtrade.git "$FREQTRADE_DIR"
 }
 
