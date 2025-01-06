@@ -81,10 +81,10 @@ Once I found something that looks promising I will run a dry-run over couple of 
 
 In a nutshell those are the most important metrics I look at:
 
-Expectancy: The average amount you can expect to win (or lose) per trade with this strategy. Above 0.2 is usually considered good.
-Profit factor: The ratio of gross profit to gross loss. Above 2 is usually considered good.
-Avg profit: The average profit per trade. Above 1% is usually considered good.
-Drawdown: The maximum drawdown of the strategy. This depends on your risk tolerance, but below 10% is usually considered good.
+- Expectancy: The average amount you can expect to win (or lose) per trade with this strategy. Above 0.2 is usually considered good.
+- Profit factor: The ratio of gross profit to gross loss. Above 2 is usually considered good.
+- Avg profit: The average profit per trade. Above 1% is usually considered good.
+- Drawdown: The maximum drawdown of the strategy. This depends on your risk tolerance, but below 10% is usually considered good.
 
 This is a very high level overview and there are many other metrics and aspects to consider.
 
