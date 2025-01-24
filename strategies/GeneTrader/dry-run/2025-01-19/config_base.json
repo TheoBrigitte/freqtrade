@@ -1,0 +1,50 @@
+{
+  "dry_run": true,
+  "dry_run_wallet": 1000,
+  "strategy": "GeneStrategy",
+  "max_open_trades": 4,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 0.99,
+  "cancel_open_orders_on_exit": false,
+  "use_exit_signal": true,
+  "trailing_stop": false,
+  "stoploss": -0.3,
+  "position_adjustment_enable": false,
+  "timeframe": "5m",
+  "unfilledtimeout": {
+    "entry": 5,
+    "exit": 30,
+    "unit": "minutes"
+  },
+  "entry_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1,
+    "price_last_balance": 0.0,
+    "check_depth_of_market": {
+	    "enabled": false,
+	    "bids_to_ask_delta": 1
+    }
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "order_types": {
+      "entry": "limit",
+      "exit": "market",
+      "emergency_exit": "market",
+      "force_entry": "market",
+      "force_exit": "market",
+      "stoploss": "market",
+      "stoploss_on_exchange": false,
+      "stoploss_on_exchange_interval": 60
+  },
+  "initial_state": "running",
+  "force_entry_enable": false,
+  "internals": {
+    "process_throttle_secs": 5
+  }
+}
