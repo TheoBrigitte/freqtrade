@@ -1,6 +1,5 @@
 {
   "dry_run": true,
-  "stake_currency": "USDT",
   "tradable_balance_ratio": 0.99,
   "use_exit_signal": true,
   "unfilledtimeout": {
