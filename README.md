@@ -90,6 +90,20 @@ This is a very high level overview and there are many other metrics and aspects 
 
 Here is a good knowledge base to learn from: https://botacademy.ddns.net
 
+# Donations
+
+If you find this repository useful and want to support me, you can donate to the following addresses:
+
+- BTC: `1LdHLG1v8hLmd3v4iHjB4Hav2DigJveRZ5`
+- ERC20: `0x8ad94d253bbfacb23779bb32b07a106d95705a5e`
+- TRC20: `TY8NAK4mt1sUdDHh8dEA76gfrBhViFt1UE`
+- BEP20: `0x8ad94d253bbfacb23779bb32b07a106d95705a5e`
+
+# Referral links
+
+- [Binance](https://www.binance.com/activity/referral-entry/CPA?ref=CPA_00JEMBF884)
+- [Kucoin](https://www.kucoin.com/r/rf/QBS4B9HZ)
+
 # Credits
 
 - https://github.com/freqtrade/freqtrade
