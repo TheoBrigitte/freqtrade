@@ -34,5 +34,5 @@ class E0V1E_DCA_strs(E0V1E_strs):
         if count_of_entries >= self.max_entry: return None
 
         dca_amount = self.proposed_stake * (1 - self.first_entry_ratio)
-        logger.info(f"DCA {trade.pair} with stake amount of: {dca_amount}")
+        #logger.info(f"DCA {trade.pair} with stake amount of: {dca_amount}")
         return dca_amount
