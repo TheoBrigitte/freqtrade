@@ -1,0 +1,56 @@
+{
+  "dry_run": true,
+  "dry_run_wallet": 1000,
+  "tradable_balance_ratio": 0.99,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "max_open_trades": 3,
+  "strategy": "NotAnotherSMAOffsetStrategyHOv3",
+  "timeframe": "5m",
+  "minimal_roi": {
+    "0": 0.028,
+    "10": 0.018,
+    "30": 0.010,
+    "40": 0.005
+  },
+  "trailing_stop": true,
+  "trailing_stop_positive": 0.001,
+  "trailing_stop_positive_offset": 0.01,
+  "trailing_only_offset_is_reached": true,
+  "cancel_open_orders_on_exit": false,
+  "unfilledtimeout": {
+    "entry": 10,
+    "exit": 30,
+    "unit": "minutes"
+  },
+  "entry_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1,
+    "price_last_balance": 0.0,
+    "check_depth_of_market": {
+	    "enabled": false,
+	    "bids_to_ask_delta": 1
+    }
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "order_types": {
+      "entry": "limit",
+      "exit": "market",
+      "emergency_exit": "market",
+      "force_entry": "market",
+      "force_exit": "market",
+      "stoploss": "market",
+      "stoploss_on_exchange": false,
+      "stoploss_on_exchange_interval": 60
+  },
+  "initial_state": "running",
+  "force_entry_enable": false,
+  "internals": {
+    "process_throttle_secs": 5
+  }
+}
