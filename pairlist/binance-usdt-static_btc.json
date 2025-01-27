@@ -1,0 +1,11 @@
+{
+    "exchange": {
+        "name": "binance",
+        "pair_whitelist": [
+            "BTC/USDT"
+          ]
+    },
+    "pairlists": [
+        {"method": "StaticPairList"}
+    ]
+}

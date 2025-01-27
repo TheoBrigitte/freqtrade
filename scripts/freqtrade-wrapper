@@ -16,6 +16,7 @@ from freqtrade.util import print_rich_table
 SCRIPT_DIR = os.path.dirname(__file__)
 WORKBENCH_DIR = os.path.relpath(os.path.join(SCRIPT_DIR, ".."))
 FREQTRADE_DIR = os.path.join(WORKBENCH_DIR, "freqtrade")
+HYPEROPT_PATH = os.path.join(WORKBENCH_DIR, "hyperopt_loss")
 FREQTRADE_BIN = "freqtrade"
 BIN_NAME = os.path.basename(sys.argv[0])
 
@@ -64,7 +65,9 @@ def strategy_name_from_path(strategy_path):
     if s is None:
         eprint("Invalid strategy file")
         exit(1)
-    return s[0].__name__
+    if "timeframe" not in s[0].__dict__:
+        return s[0].__name__, None
+    return s[0].__name__, s[0].timeframe
 
 # Find strategy names from path(s)
 # If the fist argument is a directory, load all strategies in the directory
@@ -79,6 +82,7 @@ def strategy_names_from_path(args):
     if not os.path.exists(args[0]):
         raise FWError(f"Invalid path: {args[0]}")
 
+    timeframes = []
     first_path = Path(args[0])
     if first_path.is_dir():
         strategy_dir = first_path
@@ -90,7 +94,13 @@ def strategy_names_from_path(args):
             # Load all strategies in the directory
             s = StrategyResolver._search_all_objects(strategy_dir, False)
             strategy_names = [strategy["name"] for strategy in s]
-        return strategy_names, strategy_dir, args[1:]
+            for strategy in s:
+                if "timeframe" in strategy["class"].__dict__:
+                    timeframes.append(strategy["class"].timeframe)
+        unique_timeframes = list(set(timeframes))
+        if len(unique_timeframes) == 1:
+            return strategy_names, strategy_dir, unique_timeframes[0], args[1:]
+        return strategy_names, strategy_dir, None, args[1:]
 
     strategy_names = []
     strategy_dir = None
@@ -105,12 +115,19 @@ def strategy_names_from_path(args):
             elif strategy_dir != parent:
                 raise FWError("All strategies must be in the same directory")
             # Load strategy
-            strategy_name = strategy_name_from_path(strategy_path)
+            strategy_name, timeframe = strategy_name_from_path(strategy_path)
             strategy_names.append(strategy_name)
+            timeframes.append(timeframe)
         else:
-            return strategy_names, strategy_dir, args[i:]
+            unique_timeframes = list(set(timeframes))
+            if len(unique_timeframes) == 1:
+                return strategy_names, strategy_dir, unique_timeframes[0], args[i:]
+            return strategy_names, strategy_dir, None, args[i:]
 
-    return strategy_names, strategy_dir, []
+    unique_timeframes = list(set(timeframes))
+    if len(unique_timeframes) == 1:
+        return strategy_names, strategy_dir, unique_timeframes[0], []
+    return strategy_names, strategy_dir, None, []
 
 ##########################
 # Functions
@@ -228,21 +245,25 @@ def backtesting(sys_args):
     add_base_args(args)
 
     # Load strategy(ies)
-    strategy_names, strategy_dir, additional_args = strategy_names_from_path(sys_args)
+    strategy_names, strategy_dir, strategy_timeframe, additional_args = strategy_names_from_path(sys_args)
     strategies = ' '.join(strategy_names)
     args.append(f"--strategy-list {strategies}")
     args.append(f"--strategy-path {strategy_dir}")
 
     # Set strategy config.json if found
     add_timeframe_detail = True
+    config_has_timeframe = False
     strategy_config = add_strategy_config(strategy_dir, args)
-    if "timeframe" in strategy_config:
+    if strategy_config and "timeframe" in strategy_config:
+        config_has_timeframe = True
         timeframe = strategy_config["timeframe"]
         timeframe_seconds = timeframe_to_seconds(timeframe)
         # Do not set timeframe-detail to 1m for 1m timeframe
         if timeframe_seconds <= 60:
             add_timeframe_detail = False
 
+    if not config_has_timeframe and strategy_timeframe:
+        args.append(f"--timeframe {strategy_timeframe}")
     if add_timeframe_detail:
         args.append(f"--timeframe-detail 1m")
 
@@ -282,6 +303,27 @@ def generate_static_pairlist(pairlist_config):
         json.dump(template, f, indent=4)
     print(f"==> generated pairlist.json")
 
+def hyperopt(sys_args):
+    strategy_path = sys_args[0]
+    additional_args = sys_args[1:]
+
+    args = []
+    args.append("hyperopt")
+    add_base_args(args)
+
+    # Load strategy
+    strategy_path = Path(strategy_path)
+    strategy_name, timeframe = strategy_name_from_path(strategy_path)
+    args.append(f"--strategy {strategy_name}")
+    args.append(f"--strategy-path {strategy_path.parent}")
+    args.append(f"--hyperopt-path {HYPEROPT_PATH}")
+
+    add_strategy_config(strategy_path.parent, args)
+
+    args += additional_args
+
+    run_freqtrade(args)
+
 # Run lookahead analysis
 def lookahead_analysis(sys_args):
     args = []
@@ -289,7 +331,7 @@ def lookahead_analysis(sys_args):
     add_base_args(args)
 
     # Load strategy(ies)
-    strategy_names, strategy_dir, additional_args = strategy_names_from_path(sys_args)
+    strategy_names, strategy_dir, strategy_timeframe, additional_args = strategy_names_from_path(sys_args)
     strategies = ' '.join(strategy_names)
     args.append(f"--strategy-list {strategies}")
     args.append(f"--strategy-path {strategy_dir}")
@@ -348,7 +390,7 @@ def recursive_analysis(sys_args):
 
     # Load strategy
     strategy_path = Path(strategy_path)
-    strategy_name = strategy_name_from_path(strategy_path)
+    strategy_name, timeframe = strategy_name_from_path(strategy_path)
     args.append(f"--strategy {strategy_name}")
     args.append(f"--strategy-path {strategy_path.parent}")
 
@@ -365,7 +407,7 @@ def strategy_updater(sys_args):
     add_base_args(args)
 
     # Load strategy(ies)
-    strategy_names, strategy_dir, additional_args = strategy_names_from_path(sys_args)
+    strategy_names, strategy_dir, strategy_timeframe, additional_args = strategy_names_from_path(sys_args)
     strategies = ' '.join(strategy_names)
     args.append(f"--strategy-list {strategies}")
     args.append(f"--strategy-path {strategy_dir}")
@@ -422,6 +464,9 @@ def main(args):
             if len(args) < 3:
                 raise FWError("Please provide a pairlist config filename")
             generate_static_pairlist(args[2])
+
+        case "hyperopt":
+            hyperopt(args[2:])
 
         case "lookahead-analysis":
             lookahead_analysis(args[2:])

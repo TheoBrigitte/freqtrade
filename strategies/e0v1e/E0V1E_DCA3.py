@@ -186,7 +186,7 @@ class E0V1E_DCA3(IStrategy):
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')
+        #dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')
 
         return dataframe
 

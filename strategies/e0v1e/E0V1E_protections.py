@@ -20,7 +20,7 @@ def ewo(dataframe, ema_length=5, ema2_length=35):
     return emadif
 
 
-class E0V1E_nice(IStrategy):
+class E0V1E_protections(IStrategy):
     minimal_roi = {
         "0": 10
     }
@@ -182,6 +182,22 @@ class E0V1E_nice(IStrategy):
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')
+        #dataframe.loc[(), ['exit_long', 'exit_tag']] = (0, 'long_out')
 
         return dataframe
+
+    @property
+    def protections(self):
+        return [
+            {
+                "method": "CooldownPeriod",
+                "stop_duration_candles": 4
+            },
+            {
+                "method": "MaxDrawdown",
+                "lookback_period_candles": 48,
+                "trade_limit": 20,
+                "stop_duration_candles": 4,
+                "max_allowed_drawdown": 0.2
+            }
+        ]
