@@ -2,6 +2,8 @@ This directory holds a list of dry runs that have been performed on various stra
 
 #### dry-runs
 
+- [2025-02-15_e0v1e](../strategies/e0v1e/dry-run/2025-02-15)
+- [2025-01-29_smas](../strategies/smas/dry-run/2025-01-29)
 - [2025-01-24_smas](../strategies/smas/dry-run/2025-01-24)
 - [2025-01-21_harmonic-divergence](../strategies/harmonic-divergence/dry-run/2025-01-21)
 - [2025-01-19_nasos](../strategies/nasos/dry-run/2025-01-19)
