@@ -1,0 +1,124 @@
+{
+  "max_open_trades": 10,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 1,
+  "dry_run_wallet": 50,
+  "fiat_display_currency": "USD",
+  "trading_mode": "futures",
+  "margin_mode": "isolated",
+  "stoploss_on_exchange": true,
+  "dry_run": false,
+  "timeframe": "5m",
+  "cancel_open_orders_on_exit": false,
+  "unfilledtimeout": {
+    "unit": "minutes",
+    "enter": 10,
+    "exit_timeout_count": 2,
+    "exit": 30
+
+  },
+  "order_types": {
+    "entry": "limit",
+    "exit": "limit",
+    "emergency_exit": "market",
+    "force_entry": "market",
+    "force_exit": "market",
+    "stoploss": "market",
+    "stoploss_on_exchange": false,
+    "stoploss_on_exchange_interval": 60
+  },
+  "entry_pricing": {
+    "price_side": "other",
+    "ask_last_balance": 0,
+    "use_order_book": true,
+    "order_book_top": 1,
+    "check_depth_of_market": {
+      "enabled": false,
+      "bids_to_ask_delta": 1
+    }
+  },
+  "exit_pricing": {
+    "price_side": "other",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "exchange": {
+    "name": "binance",
+    "key": "",
+    "secret": "",
+    "ccxt_config": {
+      "enableRateLimit": true,
+      "rateLimit": 200
+    },
+    "ccxt_async_config": {
+      "enableRateLimit": true,
+      "rateLimit": 200
+    },
+    "pair_whitelist": ["BTC/USDT:USDT","ETH/USDT:USDT","SOL/USDT:USDT","BNB/USDT:USDT","TAO/USDT:USDT","BTCDOM/USDT:USDT","LTC/USDT:USDT","XRP/USDT:USDT","ZEN/USDT:USDT","XMR/USDT:USDT","SUI/USDT:USDT","ORDI/USDT:USDT","DEFI/USDT:USDT","COMP/USDT:USDT","INJ/USDT:USDT","ENS/USDT:USDT","TRB/USDT:USDT","QNT/USDT:USDT","DOT/USDT:USDT","GAS/USDT:USDT","ZEC/USDT:USDT","FIL/USDT:USDT","TIA/USDT:USDT","ADA/USDT:USDT","DOGE/USDT:USDT","WLD/USDT:USDT","WIF/USDT:USDT","NEAR/USDT:USDT","EGLD/USDT:USDT"],
+    "pair_blacklist": []
+  },
+  "pairlists": [
+    {
+        "method": "StaticPairList",
+        "mode": "whitelist",
+        "processing_mode": "filter"
+
+    }
+],
+
+
+  "telegram": {
+      "enabled": true,
+      "token": "",
+      "chat_id": "",
+      "keyboard": [
+          [
+              "/daily",
+              "/balance",
+              "/profit"
+          ],
+          [
+              "/status table",
+              "/status",
+              "/performance"
+          ],
+          [
+              "/logs",
+              "/whitelist"
+          ]
+      ],
+      "notification_settings": {
+          "status": "silent",
+          "warning": "on",
+          "startup": "silent",
+          "entry": "off",
+          "exit": "off",
+          "entry_cancel": "silent",
+          "exit_cancel": "silent",
+          "entry_fill": "silent",
+          "exit_fill": "silent",
+          "protection_trigger": "silent",
+          "protection_trigger_global": "silent"
+      },
+      "reload": true,
+      "balance_dust_level": 0.01
+  },
+  "api_server": {
+      "enabled": false,
+      "listen_ip_address": "0.0.0.0",
+      "listen_port": 8080,
+      "verbosity": "error",
+      "enable_openapi": false,
+      "jwt_secret_key": "",
+      "CORS_origins": [],
+      "username": "freqtrade",
+      "password": "freqtrade"
+  },
+  "bot_name": "freqtrade",
+  "initial_state": "running",
+  "force_entry_enable": false,
+  "internals": {
+    "process_throttle_secs": 5
+  }
+}
