@@ -30,11 +30,12 @@ scripts/setup.sh -u
 ## Repository structure
 
 - `backtest_results/` - Contains my backtest results, good or bad, they are all here
-- `config/`          - Contains a bunch of configurations I found, some I used, some I didn't
-- `scripts/`          - Contains some scripts I use to work with freqtrade and this repository
+- `config/`           - Contains a bunch of configurations I found, some I used, some I didn't
+- `dry-runs/`         - Contains links to dry-run results
 - `pairlist/`         - Contains a collection of pairlists
-- `strategies/`       - Contains all strategies I found and played with. Folder names are arbitrary and each folder might contain additional configurations for the specific strategy(ies)
+- `scripts/`          - Contains some scripts I use to work with freqtrade and this repository
 - `sources/`          - Contains sources of strategies I found. They mainly are git submodules to other repositories
+- `strategies/`       - Contains all strategies I found and played with. Folder names are arbitrary and each folder might contain additional configurations for the specific strategy(ies)
 
 ## How I use this repository
 
