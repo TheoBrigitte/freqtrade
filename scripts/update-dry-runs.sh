@@ -13,7 +13,7 @@ EOF
 
 mkdir -p dry-runs
 
-for d in $(find strategies/*/dry-run/* -type d|sort -rt/ -k4); do
+for d in $(find strategies/*/dry-run/* -type d -links 2|sort -rt/ -k4); do
   strategy="$(echo $d | cut -d'/' -f2)"
   leaf="$(echo $d | cut -d'/' -f4-)"
   link_name="${leaf/\//_}_${strategy}"
