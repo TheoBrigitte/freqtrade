@@ -1,0 +1,5 @@
+{
+  "position_adjustment_enable": true,
+  "max_open_trades": 5,
+  "timeframe": "5m"
+}
