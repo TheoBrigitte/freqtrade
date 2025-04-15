@@ -100,3 +100,9 @@
 [submodule "sources/yodostrats"]
 	path = sources/yodostrats
 	url = git@github.com:Yodolescrypto/yodostrats.git
+[submodule "sources/freqtrade_custom_strats"]
+	path = sources/freqtrade_custom_strats
+	url = git@github.com:adevrent/freqtrade_custom_strats.git
+[submodule "sources/davidzr-freqtrade-strategies"]
+	path = sources/davidzr-freqtrade-strategies
+	url = git@github.com:davidzr/freqtrade-strategies.git
