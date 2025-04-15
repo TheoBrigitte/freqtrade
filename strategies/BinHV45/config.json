@@ -1,9 +1,16 @@
 {
-    //"max_open_trades": 3,
-    //"stake_amount": "unlimited",
+    "max_open_trades": 3,
+    "stake_amount": "unlimited",
     "timeframe": "1m",
-    "stoploss": -0.19,
+    "stoploss": -0.05,
+    "trailing_stop": true,
+    "trailing_stop_positive": 0.001,
+    "trailing_stop_positive_offset": 0.01,
+    "trailing_only_offset_is_reached": true,
     "minimal_roi": {
-      "0": 0.0125
+      "0": 0.0125,
+      "10": 0.018,
+      "30": 0.01,
+      "40": 0.005
     }
 }
