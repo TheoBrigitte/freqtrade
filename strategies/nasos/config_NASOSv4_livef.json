@@ -1,0 +1,158 @@
+{
+    "max_open_trades": 3,
+    "stake_currency": "USDT",
+    "stake_amount": 20,
+    "tradable_balance_ratio": 0.95,
+    "fiat_display_currency": "USD",
+    "timeframe": "15m",
+    "dry_run": false,
+    "cancel_open_orders_on_exit": false,
+    "trading_mode": "spot",
+    "unfilledtimeout": {
+        "entry": 10,
+        "exit": 10,
+        "exit_timeout_count": 0,
+        "unit": "minutes"
+    },
+    "entry_pricing": {
+        "price_side": "same",
+        "use_order_book": true,
+        "order_book_top": 1,
+        "price_last_balance": 0.0,
+        "check_depth_of_market": {
+            "enabled": false,
+            "bids_to_ask_delta": 1
+        }
+    },
+    "exit_pricing": {
+        "price_side": "same",
+        "use_order_book": true,
+        "order_book_top": 1
+    },
+    "exchange": {
+        "name": "htx",
+        "key": "x",
+        "secret": "x",
+        "ccxt_config": {
+            "enableRateLimit": true
+        },
+        "ccxt_async_config": {
+            "enableRateLimit": true,
+            "rateLimit": 200
+        },
+        "pair_whitelist": [],
+        "pair_blacklist": []
+    },
+    "pairlists": [
+        {
+            "method": "VolumePairList",
+            "number_assets": 80,
+            "sort_key": "quoteVolume",
+            "min_value": 0,
+            "refresh_period": 1800
+        },
+        {
+            "method": "AgeFilter",
+            "min_days_listed": 30
+        },
+        {
+            "method": "SpreadFilter",
+            "max_spread_ratio": 0.005
+        },
+        {
+            "method": "PriceFilter",
+            "min_price": 0.0001
+        },
+        {
+            "method": "ShuffleFilter",
+            "seed": 42
+        }
+    ],
+    "bot_name": "NASOSv4",
+    "initial_state": "running",
+    "force_entry_enable": false,
+    "internals": {
+        "process_throttle_secs": 5
+    },
+    "strategy": "NASOSv4",
+    "strategy_path": "user_data/strategies/",
+    "use_exit_signal": true,
+    "exit_profit_only": false,
+    "ignore_roi_if_entry_signal": true,
+    "order_types": {
+        "entry": "limit",
+        "exit": "limit",
+        "emergency_exit": "market",
+        "force_entry": "market",
+        "force_exit": "market",
+        "stoploss": "market",
+        "stoploss_on_exchange": false
+    },
+    "order_time_in_force": {
+        "entry": "GTC",
+        "exit": "GTC"
+    },
+    "edge": {
+        "enabled": false,
+        "process_throttle_secs": 3600,
+        "calculate_since_number_of_days": 7,
+        "allowed_risk": 0.01,
+        "stoploss_range_min": -0.01,
+        "stoploss_range_max": -0.1,
+        "stoploss_range_step": -0.01,
+        "minimum_winrate": 0.60,
+        "minimum_expectancy": 0.20,
+        "min_trade_number": 10,
+        "max_trade_duration_minute": 1440,
+        "remove_pumps": false
+    },
+    "api_server": {
+        "enabled": true,
+        "listen_ip_address": "0.0.0.0",
+        "listen_port": 8080,
+        "verbosity": "error",
+        "enable_openapi": true,
+        "jwt_secret_key": "your-secret-key-change-this",
+        "CORS_origins": ["http://localhost:8080"],
+        "username": "NASOSv4",
+        "password": "admin"
+    },
+    "telegram": {
+        "enabled": true,
+        "token": "x",
+        "chat_id": "x",
+        "notification_settings": {
+            "status": "on",
+            "warning": "on",
+            "startup": "on",
+            "entry": "on",
+            "exit": "on",
+            "entry_cancel": "on",
+            "exit_cancel": "on",
+            "entry_fill": "on",
+            "exit_fill": "on",
+            "protection_trigger": "on",
+            "protection_trigger_global": "on"
+        },
+        "reload": true,
+        "balance_dust_level": 0.01,
+        "keyboard": [
+            ["/daily", "/profit", "/balance"],
+            ["/status", "/performance"],
+            ["/count", "/start", "/stop"],
+            ["/help", "/version"]
+        ],
+        "commands": [
+            "/start - Start the bot",
+            "/stop - Stop the bot",
+            "/status - Get the status of the bot",
+            "/balance - Get the balance of all currencies",
+            "/daily - Get the daily profit",
+            "/profit - Get the profit summary",
+            "/performance - Get performance of each coin",
+            "/count - Get the number of trades",
+            "/help - Get help about usage",
+            "/version - Get version info"
+        ]
+    }
+}

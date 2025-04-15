@@ -1,0 +1,47 @@
+{
+  "strategy_name": "NASOSv4",
+  "params": {
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.001,
+      "trailing_stop_positive_offset": 0.016,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 1
+    },
+    "buy": {
+      "ewo_high": 2.403,
+      "ewo_high_2": -5.585,
+      "ewo_low": -14.378,
+      "low_offset": 0.984,
+      "low_offset_2": 0.942,
+      "rsi_buy": 72,
+      "base_nb_candles_buy": 20,
+      "lookback_candles": 3,
+      "profit_threshold": 1.022
+    },
+    "sell": {
+      "pHSL": -0.15,
+      "pPF_1": 0.016,
+      "pPF_2": 0.024,
+      "pSL_1": 0.014,
+      "pSL_2": 0.022,
+      "base_nb_candles_sell": 22,
+      "high_offset": 0.983,
+      "high_offset_2": 1.453
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.13899999999999998,
+      "37": 0.087,
+      "87": 0.026,
+      "135": 0
+    },
+    "stoploss": {
+      "stoploss": -0.172
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-01-08 16:30:33.435523+00:00"
+}
