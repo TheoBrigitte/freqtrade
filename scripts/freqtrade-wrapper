@@ -148,7 +148,7 @@ def latest_backtest_results_additional_summary(filename, strategy_name: None):
 # Show additional summary for backtest results
 # With the following columns:
 #   - Strategy
-#   - Expectancy
+#   - Expectancy (ratio)
 #   - Profit Factor
 #   - Drawdown
 #   - Avg Profit
@@ -162,7 +162,7 @@ def backtest_results_additional_summary(filename, strategy_name: None):
 
     headers = [
         "Strategy",
-        "Expectancy",
+        "Expectancy (ratio)",
         "Profit Factor",
         "Drawdown",
         "Avg Profit",
@@ -176,6 +176,7 @@ def backtest_results_additional_summary(filename, strategy_name: None):
     output = []
     for name, strategy in data["strategy"].items():
         expectancy = strategy["expectancy"] # Expectancy
+        expectancy_ratio = strategy["expectancy_ratio"] # Expectancy Ratio
         profit_factor = strategy["profit_factor"] # Profit Factor
         max_relative_drawdown = strategy["max_relative_drawdown"] * 100 # Max Drawdown %
         profit_mean = strategy["profit_mean"] * 100 # Avg Profit %
@@ -189,7 +190,7 @@ def backtest_results_additional_summary(filename, strategy_name: None):
 
         output.append([
             name,
-            f"{expectancy:.4f}",
+            f"{expectancy:.4f} ({expectancy_ratio:.2f})",
             f"{profit_factor:.4f}",
             f"{max_relative_drawdown:.2f}",
             f"{profit_mean:.2f}",
