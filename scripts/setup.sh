@@ -2,6 +2,8 @@
 #
 # Setup script to install and update freqtrade
 
+set -eu
+
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 source "$SCRIPT_DIR/common.sh"
@@ -26,8 +28,16 @@ install() {
 }
 
 update() {
-  echo "===> update"
+  echo "===> working directory: $FREQTRADE_DIR"
   cd "$FREQTRADE_DIR"
+
+  if ! [ -z "$(git status --porcelain)" ]; then
+    echo "===> working directory is dirty, please commit or stash your changes"
+    return 1
+  fi
+
+  git pull
+
   ./setup.sh -u
 }
 
