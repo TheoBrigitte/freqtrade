@@ -2,6 +2,19 @@ This directory holds a list of dry runs that have been performed on various stra
 
 #### dry-runs
 
+- [2025-04-15_kucoin_nasos](../strategies/nasos/dry-run/2025-04-15/kucoin)
+- [2025-04-15_kucoin_BinHV45](../strategies/BinHV45/dry-run/2025-04-15/kucoin)
+- [2025-04-15_binance_nasos](../strategies/nasos/dry-run/2025-04-15/binance)
+- [2025-04-15_binance_BinHV45](../strategies/BinHV45/dry-run/2025-04-15/binance)
+- [2025-03-09_kucoin_BinHV45](../strategies/BinHV45/dry-run/2025-03-09/kucoin)
+- [2025-03-09_binance_BinHV45](../strategies/BinHV45/dry-run/2025-03-09/binance)
+- [2025-03-08_BinHV45_werkkrew_BinHV45](../strategies/BinHV45/dry-run/2025-03-08/BinHV45_werkkrew)
+- [2025-03-08_BinHV45_kanaxe_BinHV45](../strategies/BinHV45/dry-run/2025-03-08/BinHV45_kanaxe)
+- [2025-03-07_smas](../strategies/smas/dry-run/2025-03-07)
+- [2025-03-07_BinHV45](../strategies/BinHV45/dry-run/2025-03-07)
+- [2025-02-28_trailing5_smas](../strategies/smas/dry-run/2025-02-28/trailing5)
+- [2025-02-28_trailing2.5_smas](../strategies/smas/dry-run/2025-02-28/trailing2.5)
+- [2025-02-28_overbuy_smas](../strategies/smas/dry-run/2025-02-28/overbuy)
 - [2025-02-15_e0v1e](../strategies/e0v1e/dry-run/2025-02-15)
 - [2025-01-29_smas](../strategies/smas/dry-run/2025-01-29)
 - [2025-01-24_smas](../strategies/smas/dry-run/2025-01-24)
