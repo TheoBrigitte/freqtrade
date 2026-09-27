@@ -1,9 +1,9 @@
 {
-    "max_open_trades": 6,
-    "stake_amount": "unlimited",
-    "timeframe": "5m",
+    //"max_open_trades": 6,
+    //"stake_amount": "unlimited",
+    "timeframe": "15m",
     //"stoploss": -0.3,
-    "minimal_roi": {
-      "0": 0.02
-    }
+    //"minimal_roi": {
+    //  "0": 0.02
+    //}
 }

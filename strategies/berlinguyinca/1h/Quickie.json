@@ -1,0 +1,28 @@
+{
+  "strategy_name": "Quickie",
+  "params": {
+    "buy": {},
+    "sell": {},
+    "protection": {},
+    "roi": {
+      "0": 0.422,
+      "476": 0.108,
+      "947": 0.026,
+      "2295": 0
+    },
+    "stoploss": {
+      "stoploss": -0.113
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.326,
+      "trailing_stop_positive_offset": 0.329,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 1
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-01-08 15:41:15.556247+00:00"
+}

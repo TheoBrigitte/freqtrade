@@ -1,0 +1,28 @@
+{
+  "strategy_name": "VolatilitySystem",
+  "params": {
+    "buy": {},
+    "sell": {},
+    "protection": {},
+    "roi": {
+      "0": 0.5780000000000001,
+      "186": 0.12,
+      "344": 0.058,
+      "728": 0
+    },
+    "stoploss": {
+      "stoploss": -0.093
+    },
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.331,
+      "trailing_stop_positive_offset": 0.42800000000000005,
+      "trailing_only_offset_is_reached": false
+    },
+    "max_open_trades": {
+      "max_open_trades": 1
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-01-08 15:39:08.152226+00:00"
+}

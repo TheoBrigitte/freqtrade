@@ -1,9 +1,13 @@
 {
-    "timeframe": "5m",
-    "minimal_roi": {
-      "0": 0.028,
-      "10": 0.018,
-      "30": 0.010,
-      "40": 0.005
-    }
+    "timeframe": "30m",
+    //"minimal_roi": {
+    //  "0": 0.028,
+    //  "10": 0.018,
+    //  "30": 0.010,
+    //  "40": 0.005
+    //},
+    "trailing_stop": true,
+    "trailing_stop_positive": 0.001,
+    "trailing_stop_positive_offset": 0.01,
+    "trailing_only_offset_is_reached": true
 }

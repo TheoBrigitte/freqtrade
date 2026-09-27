@@ -49,7 +49,7 @@ class ZaratustraDCA2_06(IStrategy):
     use_custom_stoploss = False
     trailing_stop = False
     ignore_roi_if_entry_signal = True
-    can_short = True
+    can_short = False
     use_exit_signal = True
     stoploss = -0.10
     startup_candle_count: int = 100

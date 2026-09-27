@@ -1,0 +1,37 @@
+{
+  "strategy_name": "SMAOffset_Hippocritical_dca_protections",
+  "params": {
+    "trailing": {
+      "trailing_stop": true,
+      "trailing_stop_positive": 0.001,
+      "trailing_stop_positive_offset": 0.01,
+      "trailing_only_offset_is_reached": true
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    },
+    "buy": {
+      "base_nb_candles_buy": 8,
+      "ewo_high": 5.884,
+      "ewo_low": -11.15,
+      "low_offset": 0.988,
+      "rsi_buy": 43
+    },
+    "sell": {
+      "base_nb_candles_sell": 9,
+      "high_offset": 0.995
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.183,
+      "19": 0.046,
+      "76": 0.027,
+      "175": 0
+    },
+    "stoploss": {
+      "stoploss": -0.151
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2025-01-08 21:33:19.711271+00:00"
+}

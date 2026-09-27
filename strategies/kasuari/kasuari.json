@@ -1,0 +1,38 @@
+{
+  "strategy_name": "Kasuari",
+  "params": {
+    "roi": {
+      "0": 0.015
+    },
+    "stoploss": {
+      "stoploss": -1.0
+    },
+    "max_open_trades": {
+      "max_open_trades": 3
+    },
+    "buy": {
+      "buy_length_hma1": 5,
+      "buy_length_hma2": 10,
+      "buy_length_hma3": 20,
+      "buy_length_hma4": 50,
+      "buy_length_dema1": 5,
+      "buy_length_dema2": 10,
+      "buy_length_dema3": 20,
+      "buy_length_dema4": 50,
+      "buy_length_tema1": 5,
+      "buy_length_tema2": 10,
+      "buy_length_tema3": 20,
+      "buy_length_tema4": 50
+    },
+    "sell": {
+      "sell_deadfish_bb_factor": 0.928,
+      "sell_deadfish_bb_width": 0.359,
+      "sell_deadfish_profit": -0.05,
+      "sell_deadfish_volume_factor": 2.45,
+      "sell_fastx": 64
+    },
+    "protection": {}
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2024-10-14 11:08:42.643550+00:00"
+}
