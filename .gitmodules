@@ -106,3 +106,6 @@
 [submodule "sources/freqtrade-arima"]
 	path = sources/freqtrade-arima
 	url = git@github.com:/twilker/freqtrade-arima.git
+[submodule "sources/RoboticAutomations_freqtradestrategies"]
+	path = sources/RoboticAutomations_freqtradestrategies
+	url = git@github.com:RoboticAutomations/freqtradestrategies
