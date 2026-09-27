@@ -82,9 +82,6 @@
 [submodule "sources/NostalgiaForInfinity"]
 	path = sources/NostalgiaForInfinity
 	url = git@github.com:/iterativv/NostalgiaForInfinity.git
-[submodule "sources/NostalgiaForInfinityData"]
-	path = sources/NostalgiaForInfinityData
-	url = git@github.com:iterativv/NostalgiaForInfinityData.git
 [submodule "sources/optimize-trading-strategy-using-freqtrade"]
 	path = sources/optimize-trading-strategy-using-freqtrade
 	url = git@github.com:devbootstrap/optimize-trading-strategy-using-freqtrade.git
