@@ -103,3 +103,6 @@
 [submodule "sources/davidzr-freqtrade-strategies"]
 	path = sources/davidzr-freqtrade-strategies
 	url = git@github.com:davidzr/freqtrade-strategies.git
+[submodule "sources/freqtrade-arima"]
+	path = sources/freqtrade-arima
+	url = git@github.com:/twilker/freqtrade-arima.git
